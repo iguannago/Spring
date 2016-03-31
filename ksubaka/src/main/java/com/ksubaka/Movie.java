@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by davicres on 31/03/2016.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SearchItem {
+public class Movie {
     @JsonProperty("Title")
     private String title;
     @JsonProperty("Year")

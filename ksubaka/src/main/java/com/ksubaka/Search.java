@@ -13,13 +13,13 @@ import java.util.List;
 public final class Search {
 
     @JsonProperty("Search")
-    private List<SearchItem> search = new ArrayList<SearchItem>();
+    private List<Movie> search = new ArrayList<Movie>();
 
-    public List<SearchItem> getSearch() {
+    public List<Movie> getSearch() {
         return search;
     }
 
-    public void setSearch(List<SearchItem> search) {
+    public void setSearch(List<Movie> search) {
         this.search = search;
     }
 
