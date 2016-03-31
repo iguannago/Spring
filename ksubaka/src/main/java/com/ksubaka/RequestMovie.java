@@ -1,6 +1,5 @@
 package com.ksubaka;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -10,8 +9,8 @@ public class RequestMovie {
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    public ResponseEntity<String> call(String movie) {
-        return restTemplate.getForEntity(
-                "http://www.omdbapi.com/?s="+movie+"&type=movie&y=&plot=short&r=json", String.class);
+    public Search call(String movie) {
+        return restTemplate.getForObject(
+                "http://www.omdbapi.com/?s="+movie+"&type=movie&y=&plot=short&r=json", Search.class);
     }
 }

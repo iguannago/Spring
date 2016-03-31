@@ -1,22 +1,22 @@
 package com.ksubaka;
 
 import org.junit.Test;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by davicres on 31/03/2016.
  */
 public class RequestMovieTest {
     @Test
-    public void httpRequestIsOk() {
+    public void httpRequestRetrieveData() {
+        Search search = null;
         RequestMovie requestMovie = new RequestMovie();
-        ResponseEntity<String> response = requestMovie.call("Indiana Jones");
-        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNull(search);
+        search = requestMovie.call("Indiana Jones");
+        System.out.println("eearch: " + search.toString());
+        assertNotNull(search);
     }
-
-
 
 }
