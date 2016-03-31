@@ -8,7 +8,6 @@ import static org.junit.Assert.*;
  * Created by davicres on 31/03/2016.
  */
 public class RequestMovieTest {
-
     private RequestMovie requestMovie = new RequestMovie();
     private Search search = null;
 

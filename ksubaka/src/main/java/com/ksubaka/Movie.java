@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by davicres on 31/03/2016.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Movie {
+public final class Movie {
     @JsonProperty("Title")
     private String title;
     @JsonProperty("Year")
@@ -50,7 +50,7 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "SearchItem{" +
+        return "Movie{" +
                 "title='" + title + '\'' +
                 ", year='" + year + '\'' +
                 ", director='" + director + '\'' +
