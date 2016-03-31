@@ -11,8 +11,8 @@ public class Application {
 
     public static void main(String[] args) {
         RequestMovie requestMovie = new RequestMovie();
-        Search search = requestMovie.call(System.getProperty("movie"));
-        for (Movie searchitem: search.getSearch()) {
+        MovieList movieList = requestMovie.call(System.getProperty("movie"));
+        for (Movie searchitem: movieList.getSearch()) {
             log.info(searchitem.toString());
         }
 

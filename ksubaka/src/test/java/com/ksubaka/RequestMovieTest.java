@@ -9,21 +9,21 @@ import static org.junit.Assert.*;
  */
 public class RequestMovieTest {
     private RequestMovie requestMovie = new RequestMovie();
-    private Search search = null;
+    private MovieList movieList = null;
 
     @Test
     public void httpRequestRetrieveData() {
         RequestMovie requestMovie = new RequestMovie();
-        assertNull(search);
-        search = requestMovie.call("Indiana Jones");
-        System.out.println("search: " + search.toString());
-        assertNotNull(search);
+        assertNull(movieList);
+        movieList = requestMovie.call("Indiana Jones");
+        System.out.println("search: " + movieList.toString());
+        assertNotNull(movieList);
     }
 
     @Test
     public void httpRequestRetrieveTitleYearAndDirectorData() {
-        search = requestMovie.call("Indiana Jones");
-        String director = search.getSearch().get(0).getDirector();
+        movieList = requestMovie.call("Indiana Jones");
+        String director = movieList.getSearch().get(0).getDirector();
         assertNotNull(director);
         assertNotEquals("", director);
     }

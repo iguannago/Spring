@@ -10,7 +10,7 @@ import java.util.List;
  * Created by davicres on 31/03/2016.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public final class Search {
+public final class MovieList {
 
     @JsonProperty("Search")
     private List<Movie> search = new ArrayList<Movie>();
@@ -25,7 +25,7 @@ public final class Search {
 
     @Override
     public String toString() {
-        return "Search{" +
+        return "Movies{" +
                 "search=" + search +
                 '}';
     }
