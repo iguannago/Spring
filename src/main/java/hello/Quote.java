@@ -1,12 +1,15 @@
 package hello;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by davicres on 31/03/2016.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public final class Quote {
 
     private String type;
-    private Value vatue;
+    private Value value;
 
     public String getType() {
         return type;
@@ -16,19 +19,19 @@ public final class Quote {
         this.type = type;
     }
 
-    public Value getVatue() {
-        return vatue;
+    public Value getValue() {
+        return value;
     }
 
-    public void setVatue(Value vatue) {
-        this.vatue = vatue;
+    public void setValue(Value value) {
+        this.value = value;
     }
 
     @Override
     public String toString() {
         return "Quote{" +
                 "type='" + type + '\'' +
-                ", vatue=" + vatue +
+                ", value=" + value +
                 '}';
     }
 }
