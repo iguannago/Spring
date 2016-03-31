@@ -14,7 +14,7 @@ buildscript {
 
 
 jar {
-    baseName = 'restTemplate'
+    baseName = 'ksubaka'
     version =  '0.1.0'
 }
 
