@@ -49,12 +49,11 @@ public class SearchItem {
     }
 
     @Override
-    public java.lang.String toString() {
+    public String toString() {
         return "SearchItem{" +
-                "title=" + title +
-                ", year=" + year +
-                ", imdbID=" + imdbID +
-                ", director=" + director +
+                "title='" + title + '\'' +
+                ", year='" + year + '\'' +
+                ", director='" + director + '\'' +
                 '}';
     }
 }
