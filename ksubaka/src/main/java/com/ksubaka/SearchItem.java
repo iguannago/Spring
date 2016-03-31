@@ -14,6 +14,7 @@ public class SearchItem {
     private String year;
     @JsonProperty("imdbID")
     private String imdbID;
+    private String director;
 
     public String getTitle() {
         return title;
@@ -39,12 +40,21 @@ public class SearchItem {
         this.imdbID = imdbID;
     }
 
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
     @Override
-    public String toString() {
+    public java.lang.String toString() {
         return "SearchItem{" +
-                "title='" + title + '\'' +
-                ", year='" + year + '\'' +
-                ", imdbID='" + imdbID + '\'' +
+                "title=" + title +
+                ", year=" + year +
+                ", imdbID=" + imdbID +
+                ", director=" + director +
                 '}';
     }
 }
