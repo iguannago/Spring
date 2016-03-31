@@ -20,18 +20,20 @@ public class RequestMovie {
         for (SearchItem searchitem : search.getSearch()) {
             ResponseEntity<String> response = restTemplate.getForEntity("http://www.omdbapi.com/?i=" +
                     searchitem.getImdbID() + "&y=&plot=short&r=json", String.class);
-            System.out.println("response: " + response);
-            ObjectMapper mapper = new ObjectMapper();
-            try {
-                JsonNode root = mapper.readTree(response.getBody());
-                JsonNode director = root.path("Director");
-                searchitem.setDirector(director.asText());
-                System.out.println("director:" + director.asText());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            getDirectorAndUpdateSearchItem(searchitem, response);
 
         }
         return search;
+    }
+
+    private void getDirectorAndUpdateSearchItem(SearchItem searchitem, ResponseEntity<String> response) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            JsonNode root = mapper.readTree(response.getBody());
+            JsonNode director = root.path("Director");
+            searchitem.setDirector(director.asText());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
