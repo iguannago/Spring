@@ -41,7 +41,7 @@ public class SearchItem {
 
     @Override
     public String toString() {
-        return "Search{" +
+        return "SearchItem{" +
                 "title='" + title + '\'' +
                 ", year='" + year + '\'' +
                 ", imdbID='" + imdbID + '\'' +

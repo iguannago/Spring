@@ -15,8 +15,7 @@ public class RequestMovieTest {
         RequestMovie requestMovie = new RequestMovie();
         assertNull(search);
         search = requestMovie.call("Indiana Jones");
-        System.out.println("eearch: " + search.toString());
+        System.out.println("search: " + search.toString());
         assertNotNull(search);
     }
-
 }
