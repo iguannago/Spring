@@ -10,11 +10,17 @@ public class Application {
     private static final Logger log = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) {
-        RequestMovie requestMovie = new RequestMovie();
-        MovieList movieList = requestMovie.call(System.getProperty("movie"));
-        for (Movie searchitem: movieList.getSearch()) {
-            log.info(searchitem.toString());
+        if (System.getProperty("api").equals("imdb")) {
+            RequestMovie requestMovie = new RequestMovie();
+            MovieList movieList = requestMovie.call(System.getProperty("movie"));
+            for (Movie movie: movieList.getSearch()) {
+                log.info(movie.toString());
+            }
         }
-
+        if (System.getProperty("api").equals("spotify")) {
+            RequestMusicAlbum requestMusicAlbum = new RequestMusicAlbum();
+            MusicAlbum musicAlbum = requestMusicAlbum.call(System.getProperty("album"));
+            log.info(musicAlbum.toString());
+        }
     }
 }
