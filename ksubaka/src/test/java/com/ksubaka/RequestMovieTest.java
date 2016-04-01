@@ -16,7 +16,7 @@ public class RequestMovieTest {
         RequestMovie requestMovie = new RequestMovie();
         assertNull(movieList);
         movieList = requestMovie.call("Indiana Jones");
-        System.out.println("search: " + movieList.toString());
+        System.out.println("movies: " + movieList.toString());
         assertNotNull(movieList);
     }
 
