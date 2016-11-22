@@ -1,4 +1,4 @@
-package com.get_in_the_cloud.backend;
+package com.get_in_the_cloud;
 
 /**
  * Unit test for simple App.
