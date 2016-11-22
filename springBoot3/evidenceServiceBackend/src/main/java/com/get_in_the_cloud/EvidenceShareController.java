@@ -1,4 +1,4 @@
-package com.get_in_the_cloud.backend;
+package com.get_in_the_cloud;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
