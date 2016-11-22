@@ -4,9 +4,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/EvidenceShareService/evidences")
 public class EvidenceShareController {
 
-    @RequestMapping("/EvidenceShareService/evidences/get")
+    @RequestMapping(path = "/get/{id}")
     String getEvidence() {
         return "Evidence Share API";
     }
