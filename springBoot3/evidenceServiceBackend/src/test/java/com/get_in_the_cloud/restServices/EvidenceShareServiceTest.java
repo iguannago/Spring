@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -26,7 +27,7 @@ public class EvidenceShareServiceTest {
     public void getEvidenceTest() throws Exception {
         RequestBuilder requestBuilder = get("/EvidenceShareService/evidences/get/{evidenceId}", "E001").
                 accept(MediaType.APPLICATION_JSON);
-        mockMvc.perform(requestBuilder).andExpect(status().isOk());
+        mockMvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(jsonPath("$.id").value("E001"));
     }
 
 }
