@@ -1,4 +1,4 @@
-package com.get_in_the_cloud;
+package com.get_in_the_cloud.app;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.servlet.DispatcherServlet;
