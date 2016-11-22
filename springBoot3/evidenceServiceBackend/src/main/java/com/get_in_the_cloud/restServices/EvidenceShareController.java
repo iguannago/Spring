@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class EvidenceShareController {
 
     @GetMapping("/get/{evidenceId}")
-    public String getEvidenceById(@PathVariable String evidenceId) {
-        return "Evidence ID is: " + evidenceId;
+    public Evidence getEvidenceById(@PathVariable String evidenceId) {
+        return Evidence.builder(evidenceId, "Appeal to the Social Security and Child Support Tribunal");
     }
 
 }

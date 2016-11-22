@@ -12,12 +12,12 @@ import static org.junit.Assert.assertTrue;
 public class EvidenceTest {
     @Test
     public void evidenceConstructorTest() {
-        assertNotNull(Evidence.builder("E0001", "Appeal to the Social Security and Child Support Tribunal"));
+        assertNotNull(Evidence.builder("some ID", "some content"));
     }
 
     @Test
     public void evidenceFieldsTest() {
-        Evidence evidence = Evidence.builder("E0001", "Appeal to the Social Security and Child Support Tribunal");
+        Evidence evidence = Evidence.builder("some ID", "some content");
         assertTrue(!evidence.getId().isEmpty());
         assertTrue(!evidence.getContent().isEmpty());
     }
