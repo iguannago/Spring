@@ -17,4 +17,5 @@ public class EvidenceShareAppInitializer implements WebApplicationInitializer {
         registration.setLoadOnStartup(1);
         registration.addMapping("/EvidenceShareService/*");
     }
+
 }
