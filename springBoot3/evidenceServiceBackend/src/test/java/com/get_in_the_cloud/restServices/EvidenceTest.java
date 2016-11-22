@@ -1,6 +1,5 @@
-package com.get_in_the_cloud;
+package com.get_in_the_cloud.restServices;
 
-import com.get_in_the_cloud.restServices.Evidence;
 import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
