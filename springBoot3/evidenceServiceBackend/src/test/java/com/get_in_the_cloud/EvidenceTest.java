@@ -11,8 +11,6 @@ import static org.junit.Assert.assertNotNull;
 public class EvidenceTest {
     @Test
     public void evidenceConstructorTest() {
-        String id = "E0001";
-        String content = "Appeal to the Social Security and Child Support Tribunal";
-        assertNotNull(new Evidence(id, content));
+        assertNotNull(Evidence.builder("E0001", "Appeal to the Social Security and Child Support Tribunal"));
     }
 }
