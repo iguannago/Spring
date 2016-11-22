@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableAutoConfiguration
 public class EvidenceShare {
 
-    @RequestMapping("/")
-    String home() {
+    @RequestMapping("/EvidenceShareService/evidences/get")
+    String getEvidence() {
         return "Evidence Share API";
     }
 
     public static void main(String[] args) {
         SpringApplication.run(EvidenceShare.class, args);
     }
+
 }
