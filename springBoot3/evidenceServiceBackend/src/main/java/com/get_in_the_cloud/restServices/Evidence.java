@@ -1,5 +1,8 @@
 package com.get_in_the_cloud.restServices;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by davicres on 22/11/2016.
  */
@@ -12,7 +15,8 @@ public final class Evidence {
         this.content = content;
     }
 
-    public static Evidence builder(String id, String content) {
+    @JsonCreator
+    public static Evidence builder(@JsonProperty("id") String id, @JsonProperty("content") String content) {
         return new Evidence(id, content);
     }
 
@@ -24,4 +28,11 @@ public final class Evidence {
         return content;
     }
 
+    @Override
+    public String toString() {
+        return "Evidence{" +
+                "id='" + id + '\'' +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }
