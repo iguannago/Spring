@@ -1,4 +1,4 @@
-package com.get_in_the_cloud.restServices;
+package com.get_in_the_cloud.api;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,14 +18,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class EvidenceShareServiceTest {
+public class EvidenceSharingServiceTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     public void getEvidenceTest() throws Exception {
-        RequestBuilder requestBuilder = get("/EvidenceShareService/evidences/get/{evidenceId}", "E001").
+        RequestBuilder requestBuilder = get("/EvidenceSharingService/evidences/get/{evidenceId}", "E001").
                 accept(MediaType.APPLICATION_JSON);
         mockMvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(jsonPath("$.id").value("E001"));
     }

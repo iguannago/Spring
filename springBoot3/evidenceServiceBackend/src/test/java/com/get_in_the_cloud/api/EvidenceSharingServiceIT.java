@@ -1,4 +1,4 @@
-package com.get_in_the_cloud.restServices;
+package com.get_in_the_cloud.api;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class EvidenceShareServiceIT {
+public class EvidenceSharingServiceIT {
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -23,7 +23,7 @@ public class EvidenceShareServiceIT {
     @Test
     public void getEvidenceEndPointTest() {
         ResponseEntity<Evidence> response = restTemplate.getForEntity(
-                "/EvidenceShareService/evidences/get/E002", Evidence.class);
+                "/EvidenceSharingService/evidences/get/E002", Evidence.class);
         assertEquals("E002", response.getBody().getId());
         assertEquals("Appeal to the Social Security and Child Support Tribunal", response.getBody().getContent());
     }

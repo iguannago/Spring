@@ -9,10 +9,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @SpringBootApplication
 @EnableSwagger2
-public class EvidenceShareApp {
+public class EvidenceSharingApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(EvidenceShareApp.class, args);
+        SpringApplication.run(EvidenceSharingApp.class, args);
     }
 
 }

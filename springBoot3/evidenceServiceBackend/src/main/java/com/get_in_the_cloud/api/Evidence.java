@@ -1,4 +1,4 @@
-package com.get_in_the_cloud.restServices;
+package com.get_in_the_cloud.api;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
