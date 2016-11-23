@@ -23,7 +23,7 @@ public class EvidenceSharingServiceIT {
     @Test
     public void getEvidenceEndPointTest() {
         ResponseEntity<Evidence> response = restTemplate.getForEntity(
-                "/EvidenceSharingService/evidences/get/E002", Evidence.class);
+                "/EvidenceSharingService/evidences/E002", Evidence.class);
         assertEquals("E002", response.getBody().getId());
         assertEquals("Appeal to the Social Security and Child Support Tribunal", response.getBody().getContent());
     }
