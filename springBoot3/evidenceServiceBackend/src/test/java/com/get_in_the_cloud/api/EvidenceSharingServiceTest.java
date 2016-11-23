@@ -30,10 +30,4 @@ public class EvidenceSharingServiceTest {
         mockMvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(jsonPath("$.id").value("E001"));
     }
 
-//    public void createEvidenceTEst() {
-//        RequestBuilder requestBuilder = post("/EvidenceSharingService/evidences/evidences/").
-//                accept(MediaType.APPLICATION_JSON);
-//
-//    }
-
 }
