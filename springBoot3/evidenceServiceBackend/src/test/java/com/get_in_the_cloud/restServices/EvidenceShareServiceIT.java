@@ -8,6 +8,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Created by davicres on 23/11/2016.
  */
@@ -21,8 +23,8 @@ public class EvidenceShareServiceIT {
     @Test
     public void getEvidenceEndPointTest() {
         ResponseEntity<Evidence> response = restTemplate.getForEntity(
-                "/EvidenceShareService/evidences/get/E001", Evidence.class);
-        System.out.println(response.getBody());
+                "/EvidenceShareService/evidences/get/E002", Evidence.class);
+        assertEquals("E002", response.getBody().getId());
     }
 
 }
