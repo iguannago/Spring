@@ -28,16 +28,16 @@ public class EvidenceSharingServiceIT {
         ResponseEntity<Evidence> response = restTemplate.getForEntity("/EvidenceSharingService/evidences/E002",
                 Evidence.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("E002", response.getBody().getId());
+        assertEquals("E002", response.getBody().getEvidenceID());
         assertEquals("Appeal to the Social Security and Child Support Tribunal", response.getBody().getContent());
     }
 
     @Test
     public void postEvidenceEndpointTest() throws URISyntaxException {
         ResponseEntity<Evidence> response = restTemplate.postForEntity("/EvidenceSharingService/evidences",
-                Evidence.builder("E98", "some content"), Evidence.class);
+                new Evidence("E98", "some content"), Evidence.class);
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals("E98", response.getBody().getId());
+        assertEquals("E98", response.getBody().getEvidenceID());
         assertEquals("some content", response.getBody().getContent());
     }
 

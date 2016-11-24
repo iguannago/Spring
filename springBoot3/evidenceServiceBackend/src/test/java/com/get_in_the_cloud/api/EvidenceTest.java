@@ -11,13 +11,13 @@ import static org.junit.Assert.assertTrue;
 public class EvidenceTest {
     @Test
     public void evidenceConstructorTest() {
-        assertNotNull(Evidence.builder("some ID", "some content"));
+        assertNotNull(new Evidence("some ID", "some content"));
     }
 
     @Test
     public void evidenceFieldsTest() {
-        Evidence evidence = Evidence.builder("some ID", "some content");
-        assertTrue(!evidence.getId().isEmpty());
+        Evidence evidence = new Evidence("some ID", "some content");
+        assertTrue(!evidence.getEvidenceID().isEmpty());
         assertTrue(!evidence.getContent().isEmpty());
     }
 }

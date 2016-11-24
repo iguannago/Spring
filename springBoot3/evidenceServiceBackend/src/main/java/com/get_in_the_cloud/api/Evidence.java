@@ -2,26 +2,23 @@ package com.get_in_the_cloud.api;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.hateoas.ResourceSupport;
 
 /**
  * Created by davicres on 22/11/2016.
  */
-public final class Evidence {
-    private final String id;
+public class Evidence extends ResourceSupport{
+    private final String evidenceID;
     private final String content;
 
-    private Evidence(String id, String content) {
-        this.id = id;
+    @JsonCreator
+    public Evidence(@JsonProperty("evidenceID") String evidenceID, @JsonProperty("content") String content) {
+        this.evidenceID = evidenceID;
         this.content = content;
     }
 
-    @JsonCreator
-    public static Evidence builder(@JsonProperty("id") String id, @JsonProperty("content") String content) {
-        return new Evidence(id, content);
-    }
-
-    public String getId() {
-        return id;
+    public String getEvidenceID() {
+        return evidenceID;
     }
 
     public String getContent() {
@@ -31,7 +28,7 @@ public final class Evidence {
     @Override
     public String toString() {
         return "Evidence{" +
-                "id='" + id + '\'' +
+                "evidenceID='" + evidenceID + '\'' +
                 ", content='" + content + '\'' +
                 '}';
     }
