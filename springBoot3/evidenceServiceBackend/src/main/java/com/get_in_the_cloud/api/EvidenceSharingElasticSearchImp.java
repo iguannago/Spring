@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/EvidenceSharingService")
 @Api(value = "/evidences", description = "Evidences REST API")
-public class EvidenceSharingController {
+public class EvidenceSharingElasticSearchImp implements EvidenceSharingRESTfulAPI {
 
     @GetMapping("/evidences/{evidenceId}")
     @ApiOperation(value = "Get an Evidence", notes = "Get an Evidence given an ID")
