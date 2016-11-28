@@ -25,7 +25,7 @@ public class EvidenceSharingServiceIT {
 
     @Test
     public void getEvidenceEndpointTest() {
-        ResponseEntity<Evidence> response = restTemplate.getForEntity("/EvidenceSharingService/evidences/E002",
+        ResponseEntity<Evidence> response = restTemplate.getForEntity("/EvidenceSharingAPI/evidences/E002",
                 Evidence.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("E002", response.getBody().getEvidenceID());
@@ -34,7 +34,7 @@ public class EvidenceSharingServiceIT {
 
     @Test
     public void postEvidenceEndpointTest() throws URISyntaxException {
-        ResponseEntity<Evidence> response = restTemplate.postForEntity("/EvidenceSharingService/evidences",
+        ResponseEntity<Evidence> response = restTemplate.postForEntity("/EvidenceSharingAPI/evidences",
                 new Evidence("E98", "some content"), Evidence.class);
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals("E98", response.getBody().getEvidenceID());

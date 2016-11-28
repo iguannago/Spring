@@ -25,7 +25,7 @@ public class EvidenceSharingServiceTest {
 
     @Test
     public void getEvidenceTest() throws Exception {
-        RequestBuilder requestBuilder = get("/EvidenceSharingService/evidences/{evidenceId}", "E001").
+        RequestBuilder requestBuilder = get("/EvidenceSharingAPI/evidences/{evidenceId}", "E001").
                 accept(MediaType.APPLICATION_JSON);
         mockMvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(jsonPath("$.evidenceID").value("E001"));
     }

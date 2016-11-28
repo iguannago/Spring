@@ -12,7 +12,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping("/EvidenceSharingService/evidences")
+@RequestMapping("/EvidenceSharingAPI/evidences")
 @Api(value = "/evidences", description = "Evidences REST API")
 public class EvidenceSharingElasticSearchController implements EvidenceSharingRESTfulAPI {
 
