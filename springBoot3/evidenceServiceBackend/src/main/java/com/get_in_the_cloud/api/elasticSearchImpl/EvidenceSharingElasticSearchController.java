@@ -1,5 +1,6 @@
-package com.get_in_the_cloud.api;
+package com.get_in_the_cloud.api.elasticSearchImpl;
 
+import com.get_in_the_cloud.api.EvidenceSharingRESTfulAPI;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -25,19 +26,24 @@ public class EvidenceSharingElasticSearchController implements EvidenceSharingRE
     })
     public Evidence getEvidenceById(@PathVariable(required = true) String evidenceId) {
         RestTemplate restTemplate = new RestTemplate();
-        String queryDSL = "{\n" +
+        String queryDSL = getQueryDSLToSearchByID(evidenceId);
+        UriComponents uriComponents = UriComponentsBuilder.fromUriString(
+                "http://localhost:9200/evidences/evidence/_search").queryParam("source", queryDSL).build().encode();
+        Evidence evidence = restTemplate.getForEntity(uriComponents.toUri(),
+                ElasticSearchResponse.class).getBody().getHits().getHits().get(0).get_source();
+        evidence.add(linkTo(methodOn(EvidenceSharingElasticSearchController.class).
+                getEvidenceById(evidenceId)).slash(evidenceId).withSelfRel());
+        return evidence;
+    }
+
+    private String getQueryDSLToSearchByID(String evidenceId) {
+        return "{\n" +
                 "    \"query\": {\n" +
                 "        \"match\" : {\n" +
                 "            \"evidenceID\" : \"" + evidenceId + "\"\n" +
                 "        }\n" +
                 "    }\n" +
                 "}";
-        UriComponents uriComponents = UriComponentsBuilder.fromUriString(
-                "http://localhost:9200/evidences/evidence/_search").queryParam("source", queryDSL).build().encode();
-        Evidence evidence = restTemplate.getForEntity(uriComponents.toUri(), Evidence.class).getBody();
-        evidence.add(linkTo(methodOn(EvidenceSharingElasticSearchController.class).
-                getEvidenceById(evidenceId)).slash(evidenceId).withSelfRel());
-        return evidence;
     }
 
     @PostMapping()
