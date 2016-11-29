@@ -29,8 +29,10 @@ public class EvidenceSharingElasticSearchController implements EvidenceSharingRE
         String queryDSL = getQueryDSLToSearchByID(evidenceId);
         UriComponents uriComponents = UriComponentsBuilder.fromUriString(
                 "http://localhost:9200/evidences/evidence/_search").queryParam("source", queryDSL).build().encode();
-        Evidence evidence = restTemplate.getForEntity(uriComponents.toUri(),
-                ElasticSearchResponse.class).getBody().getHits().getHits().get(0).get_source();
+        ElasticSearchResponse elasticSearchResponse = restTemplate.getForEntity(uriComponents.toUri(),
+                ElasticSearchResponse.class).getBody();
+        System.out.println(elasticSearchResponse);
+        Evidence evidence = elasticSearchResponse.getHits().getHits().get(0).get_source();
         evidence.add(linkTo(methodOn(EvidenceSharingElasticSearchController.class).
                 getEvidenceById(evidenceId)).slash(evidenceId).withSelfRel());
         return evidence;
