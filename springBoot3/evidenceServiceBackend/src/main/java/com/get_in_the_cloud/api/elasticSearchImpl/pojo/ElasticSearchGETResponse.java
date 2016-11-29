@@ -8,11 +8,11 @@ import java.util.List;
 /**
  * Created by davicres on 29/11/2016.
  */
-public final class ElasticSearchResponse {
+public final class ElasticSearchGETResponse {
     private final Hits hits;
 
     @JsonCreator
-    public ElasticSearchResponse(@JsonProperty("hits" )Hits hits) {
+    public ElasticSearchGETResponse(@JsonProperty("hits" )Hits hits) {
         this.hits = hits;
     }
 

@@ -33,8 +33,8 @@ public class EvidenceSharingElasticSearchControllerITest {
 
     @Test
     public void postEvidenceEndpointTest() throws URISyntaxException {
-        ResponseEntity<Evidence> response = restTemplate.postForEntity("/EvidenceSharingAPI/evidences",
-                new Evidence("E98", "some content"), Evidence.class);
+        ResponseEntity<String> response = restTemplate.postForEntity("/EvidenceSharingAPI/evidences",
+                new Evidence("E98", "some content"), String.class);
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
     }
 
