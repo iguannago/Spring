@@ -11,14 +11,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class EvidenceSharingServiceTest {
+public class EvidenceSharingElasticSearchControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -27,7 +26,7 @@ public class EvidenceSharingServiceTest {
     public void getEvidenceTest() throws Exception {
         RequestBuilder requestBuilder = get("/EvidenceSharingAPI/evidences/{evidenceId}", "E001").
                 accept(MediaType.APPLICATION_JSON);
-        mockMvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(jsonPath("$.evidenceID").value("E001"));
+        mockMvc.perform(requestBuilder).andExpect(status().isOk());
     }
 
 }

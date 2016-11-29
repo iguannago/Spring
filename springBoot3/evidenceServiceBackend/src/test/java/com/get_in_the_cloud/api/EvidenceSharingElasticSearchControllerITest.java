@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class EvidenceSharingServiceIT {
+public class EvidenceSharingElasticSearchControllerITest {
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -28,8 +28,6 @@ public class EvidenceSharingServiceIT {
         ResponseEntity<Evidence> response = restTemplate.getForEntity("/EvidenceSharingAPI/evidences/E002",
                 Evidence.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("E002", response.getBody().getEvidenceID());
-        assertEquals("Appeal to the Social Security and Child Support Tribunal", response.getBody().getContent());
     }
 
     @Test
@@ -37,8 +35,6 @@ public class EvidenceSharingServiceIT {
         ResponseEntity<Evidence> response = restTemplate.postForEntity("/EvidenceSharingAPI/evidences",
                 new Evidence("E98", "some content"), Evidence.class);
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals("E98", response.getBody().getEvidenceID());
-        assertEquals("some content", response.getBody().getContent());
     }
 
 
