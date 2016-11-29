@@ -1,6 +1,8 @@
 package com.get_in_the_cloud.api.elasticSearchImpl;
 
 import com.get_in_the_cloud.api.EvidenceSharingRESTfulAPI;
+import com.get_in_the_cloud.api.elasticSearchImpl.pojo.ElasticSearchResponse;
+import com.get_in_the_cloud.api.elasticSearchImpl.pojo.Evidence;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -26,16 +28,17 @@ public class EvidenceSharingElasticSearchController implements EvidenceSharingRE
     })
     public Evidence getEvidenceById(@PathVariable(required = true) String evidenceId) {
         RestTemplate restTemplate = new RestTemplate();
-        String queryDSL = getQueryDSLToSearchByID(evidenceId);
-        UriComponents uriComponents = UriComponentsBuilder.fromUriString(
-                "http://localhost:9200/evidences/evidence/_search").queryParam("source", queryDSL).build().encode();
-        ElasticSearchResponse elasticSearchResponse = restTemplate.getForEntity(uriComponents.toUri(),
-                ElasticSearchResponse.class).getBody();
-        System.out.println(elasticSearchResponse);
-        Evidence evidence = elasticSearchResponse.getHits().getHits().get(0).get_source();
-        evidence.add(linkTo(methodOn(EvidenceSharingElasticSearchController.class).
-                getEvidenceById(evidenceId)).slash(evidenceId).withSelfRel());
+        Evidence evidence = restTemplate.getForEntity(getUriForRequest(evidenceId).toUri(),
+                ElasticSearchResponse.class).getBody().getHits().getHits().get(0).get_source();
+        evidence.add(linkTo(methodOn(EvidenceSharingElasticSearchController.class).getEvidenceById(evidenceId)).
+                slash(evidenceId).withSelfRel());
         return evidence;
+    }
+
+    private UriComponents getUriForRequest(String evidenceId) {
+        String queryDSL = getQueryDSLToSearchByID(evidenceId);
+        return UriComponentsBuilder.fromUriString(
+                "http://localhost:9200/evidences/evidence/_search").queryParam("source", queryDSL).build().encode();
     }
 
     private String getQueryDSLToSearchByID(String evidenceId) {
