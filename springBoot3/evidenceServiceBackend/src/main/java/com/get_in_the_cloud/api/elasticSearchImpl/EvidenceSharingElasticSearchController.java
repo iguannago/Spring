@@ -19,7 +19,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @RestController
 @RequestMapping("/EvidenceSharingAPI/evidences")
 @Api(value = "/evidences", description = "Evidences REST API")
-public class EvidenceSharingElasticSearchController implements EvidenceSharingRESTfulAPI {
+public class EvidenceSharingElasticSearchController implements EvidenceSharingRESTfulAPI<ResponseEntity<Evidence>> {
 
 
     private final RestTemplate restTemplate = new RestTemplate();

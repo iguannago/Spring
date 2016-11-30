@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class EvidenceSharingElasticSearchControllerITest {
+public class EvidenceSharingElasticSearchControllerIntegrationTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
