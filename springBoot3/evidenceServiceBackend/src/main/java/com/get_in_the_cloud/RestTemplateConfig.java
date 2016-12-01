@@ -1,4 +1,4 @@
-package com.get_in_the_cloud.api.elasticSearchImpl;
+package com.get_in_the_cloud;
 
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;

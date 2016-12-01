@@ -1,4 +1,4 @@
-package com.get_in_the_cloud.api.elasticSearchImpl;
+package com.get_in_the_cloud.api.controller.elasticSearchImpl;
 
 import com.get_in_the_cloud.api.EvidenceSharingRESTfulAPI;
 import com.get_in_the_cloud.api.domain.elasticSearchAPIResponse.ElasticSearchGETResponse;
