@@ -1,6 +1,6 @@
 package com.get_in_the_cloud.api;
 
-import com.get_in_the_cloud.api.elasticSearchImpl.pojo.Evidence;
+import com.get_in_the_cloud.api.domain.evidence.Evidence;
 
 /**
  * Created by davicres on 24/11/2016.

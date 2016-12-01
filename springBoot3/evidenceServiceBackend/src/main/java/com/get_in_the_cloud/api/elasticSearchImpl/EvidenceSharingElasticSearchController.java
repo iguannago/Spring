@@ -1,8 +1,8 @@
 package com.get_in_the_cloud.api.elasticSearchImpl;
 
 import com.get_in_the_cloud.api.EvidenceSharingRESTfulAPI;
-import com.get_in_the_cloud.api.elasticSearchImpl.pojo.ElasticSearchGETResponse;
-import com.get_in_the_cloud.api.elasticSearchImpl.pojo.Evidence;
+import com.get_in_the_cloud.api.domain.elasticSearchAPIResponse.ElasticSearchGETResponse;
+import com.get_in_the_cloud.api.domain.evidence.Evidence;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -21,8 +21,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @Api(value = "/evidences", description = "Evidences REST API")
 public class EvidenceSharingElasticSearchController implements EvidenceSharingRESTfulAPI<ResponseEntity<Evidence>> {
 
-
-    private final RestTemplate restTemplate = new RestTemplate();
+    private RestTemplate restTemplate = new RestTemplate();
 
     @GetMapping("/{evidenceId}")
     @ApiOperation(value = "Get an Evidence", notes = "Get an Evidence given an ID")
@@ -31,8 +30,8 @@ public class EvidenceSharingElasticSearchController implements EvidenceSharingRE
     public Evidence getEvidenceById(@PathVariable(required = true) String evidenceId) {
         Evidence evidence = restTemplate.getForObject(getUriForRequest(evidenceId).toUri(),
                 ElasticSearchGETResponse.class).getHits().getHits().get(0).get_source();
-        evidence.add(linkTo(methodOn(EvidenceSharingElasticSearchController.class).getEvidenceById(evidenceId)).
-                slash(evidenceId).withSelfRel());
+//        evidence.add(linkTo(methodOn(EvidenceSharingElasticSearchController.class).getEvidenceById(evidenceId)).
+//                slash(evidenceId).withSelfRel());
         return evidence;
     }
 

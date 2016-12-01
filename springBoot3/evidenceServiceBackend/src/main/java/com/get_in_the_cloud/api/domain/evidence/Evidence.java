@@ -1,4 +1,4 @@
-package com.get_in_the_cloud.api.elasticSearchImpl.pojo;
+package com.get_in_the_cloud.api.domain.evidence;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

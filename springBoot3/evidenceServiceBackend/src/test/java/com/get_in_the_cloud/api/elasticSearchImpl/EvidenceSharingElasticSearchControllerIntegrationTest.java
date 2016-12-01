@@ -1,6 +1,6 @@
-package com.get_in_the_cloud.api;
+package com.get_in_the_cloud.api.elasticSearchImpl;
 
-import com.get_in_the_cloud.api.elasticSearchImpl.pojo.Evidence;
+import com.get_in_the_cloud.api.domain.evidence.Evidence;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

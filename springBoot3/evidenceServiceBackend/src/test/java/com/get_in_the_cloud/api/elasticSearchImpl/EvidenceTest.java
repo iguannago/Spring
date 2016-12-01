@@ -1,6 +1,6 @@
-package com.get_in_the_cloud.api;
+package com.get_in_the_cloud.api.elasticSearchImpl;
 
-import com.get_in_the_cloud.api.elasticSearchImpl.pojo.Evidence;
+import com.get_in_the_cloud.api.domain.evidence.Evidence;
 import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
