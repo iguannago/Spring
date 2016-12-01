@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -21,7 +22,8 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @Api(value = "/evidences", description = "Evidences REST API")
 public class EvidenceSharingElasticSearchController implements EvidenceSharingRESTfulAPI<ResponseEntity<Evidence>> {
 
-    private RestTemplate restTemplate = new RestTemplate();
+    @Autowired
+    private RestTemplate restTemplate;
 
     @GetMapping("/{evidenceId}")
     @ApiOperation(value = "Get an Evidence", notes = "Get an Evidence given an ID")
