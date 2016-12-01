@@ -1,4 +1,4 @@
-package com.get_in_the_cloud.api.controller.elasticSearchImpl;
+package com.get_in_the_cloud.api.domain;
 
 import com.get_in_the_cloud.api.domain.evidence.Evidence;
 import org.junit.Test;
