@@ -2,12 +2,11 @@ package com.get_in_the_cloud.api.domain.evidence;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.hateoas.ResourceSupport;
 
 /**
  * Created by davicres on 22/11/2016.
  */
-public class Evidence extends ResourceSupport {
+public class Evidence {
     private final String evidenceID;
     private final String content;
 
