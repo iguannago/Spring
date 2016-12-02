@@ -2,7 +2,6 @@ package com.get_in_the_cloud.api.controller.elasticSearchImpl;
 
 import com.get_in_the_cloud.api.domain.elasticSearchAPIResponse.ElasticSearchGETResponse;
 import com.get_in_the_cloud.api.domain.evidence.Evidence;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -10,7 +9,8 @@ import org.mockito.Mock;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.springframework.hateoas.mvc.ControllerLinkBuilder;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.Resource;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
@@ -23,6 +23,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(PowerMockRunner.class)
+//@PowerMockRunnerDelegate(SpringJUnit4ClassRunner.class)
 public class EvidenceSharingElasticSearchControllerTest {
 
     @InjectMocks
@@ -31,12 +32,16 @@ public class EvidenceSharingElasticSearchControllerTest {
     @Mock
     private RestTemplate restTemplate;
 
-
-    @Test@Ignore
-    @PrepareForTest({ElasticSearchGETResponse.class, ElasticSearchGETResponse.Hits.class, ControllerLinkBuilder.class,
+    @Test
+    @PrepareForTest({ElasticSearchGETResponse.class, ElasticSearchGETResponse.Hits.class, EvidenceResourceUtil.class,
             ElasticSearchGETResponse.Hits.Source.class})
     public void getEvidenceByIdTest() {
         ElasticSearchGETResponse elasticSearchGETResponseMock = mockElasticSearchGETResponseAndInnerClasses();
+
+        PowerMockito.mockStatic(EvidenceResourceUtil.class);
+        when(EvidenceResourceUtil.evidenceToGETResource(any(Evidence.class))).
+                thenReturn(new Resource<>(mock(Evidence.class), mock(Link.class)));
+
         when(restTemplate.getForObject(any(URI.class), eq(ElasticSearchGETResponse.class))).
                 thenReturn(elasticSearchGETResponseMock);
         evidenceSharingElasticSearchController.getEvidenceById("someEvidenceId");

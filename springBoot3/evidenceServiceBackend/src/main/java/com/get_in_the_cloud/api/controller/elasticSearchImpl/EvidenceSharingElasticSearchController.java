@@ -34,14 +34,7 @@ public class EvidenceSharingElasticSearchController implements EvidenceSharingRE
     public Resource<Evidence> getEvidenceById(@PathVariable(required = true) String evidenceId) {
         Evidence evidence = restTemplate.getForObject(getUriForRequest(evidenceId).toUri(),
                 ElasticSearchGETResponse.class).getHits().getHits().get(0).get_source();
-        return evidenceToGETResource(evidence);
-    }
-
-    private Resource<Evidence> evidenceToGETResource(Evidence evidence) {
-        String evidenceID = evidence.getEvidenceID();
-        Link selfLink = linkTo(methodOn(EvidenceSharingElasticSearchController.class).getEvidenceById(evidenceID)).
-                slash(evidenceID).withSelfRel();
-        return new Resource<>(evidence, selfLink);
+        return EvidenceResourceUtil.evidenceToGETResource(evidence);
     }
 
     private UriComponents getUriForRequest(String evidenceId) {
