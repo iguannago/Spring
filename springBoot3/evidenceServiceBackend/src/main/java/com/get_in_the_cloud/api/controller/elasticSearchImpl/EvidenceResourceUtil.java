@@ -18,4 +18,10 @@ public class EvidenceResourceUtil {
         return new Resource<>(evidence, selfLink);
     }
 
+    public static Resource<Evidence> evidenceToPOSTResource(Evidence evidence) {
+        Link selfLink = linkTo(methodOn(EvidenceSharingElasticSearchController.class).createEvidence(evidence)).
+                withSelfRel();
+        return new Resource<>(evidence, selfLink);
+    }
+
 }

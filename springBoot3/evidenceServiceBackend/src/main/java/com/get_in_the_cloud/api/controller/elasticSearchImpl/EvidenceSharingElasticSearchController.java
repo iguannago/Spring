@@ -8,16 +8,12 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/EvidenceSharingAPI/evidences")
@@ -60,13 +56,7 @@ public class EvidenceSharingElasticSearchController implements EvidenceSharingRE
     public ResponseEntity<Resource<Evidence>> createEvidence(@RequestBody Evidence evidence) {
         ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:9200/evidences/evidence",
                 evidence, String.class);
-        return new ResponseEntity<>(evidenceToPOSTResource(evidence), response.getStatusCode());
-    }
-
-    private Resource<Evidence> evidenceToPOSTResource(Evidence evidence) {
-        Link selfLink = linkTo(methodOn(EvidenceSharingElasticSearchController.class).createEvidence(evidence)).
-                withSelfRel();
-        return new Resource<>(evidence, selfLink);
+        return new ResponseEntity<>(EvidenceResourceUtil.evidenceToPOSTResource(evidence), response.getStatusCode());
     }
 
 }
