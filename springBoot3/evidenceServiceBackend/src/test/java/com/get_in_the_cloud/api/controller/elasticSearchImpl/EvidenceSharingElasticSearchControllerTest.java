@@ -23,7 +23,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(PowerMockRunner.class)
-//@PowerMockRunnerDelegate(SpringJUnit4ClassRunner.class)
 public class EvidenceSharingElasticSearchControllerTest {
 
     @InjectMocks
@@ -31,27 +30,30 @@ public class EvidenceSharingElasticSearchControllerTest {
 
     @Mock
     private RestTemplate restTemplate;
+    @Mock
+    private Evidence evidenceMock;
 
     @Test
     @PrepareForTest({ElasticSearchGETResponse.class, ElasticSearchGETResponse.Hits.class, EvidenceResourceUtil.class,
             ElasticSearchGETResponse.Hits.Source.class})
     public void getEvidenceByIdTest() {
         ElasticSearchGETResponse elasticSearchGETResponseMock = mockElasticSearchGETResponseAndInnerClasses();
-
-        PowerMockito.mockStatic(EvidenceResourceUtil.class);
-        when(EvidenceResourceUtil.evidenceToGETResource(any(Evidence.class))).
-                thenReturn(new Resource<>(mock(Evidence.class), mock(Link.class)));
-
+        mockEvidenceResourceUtil();
         when(restTemplate.getForObject(any(URI.class), eq(ElasticSearchGETResponse.class))).
                 thenReturn(elasticSearchGETResponseMock);
         evidenceSharingElasticSearchController.getEvidenceById("someEvidenceId");
+    }
+
+    private void mockEvidenceResourceUtil() {
+        PowerMockito.mockStatic(EvidenceResourceUtil.class);
+        when(EvidenceResourceUtil.evidenceToGETResource(any(Evidence.class))).
+                thenReturn(new Resource<>(evidenceMock, mock(Link.class)));
     }
 
     private ElasticSearchGETResponse mockElasticSearchGETResponseAndInnerClasses() {
         ElasticSearchGETResponse elasticSearchGETResponseMock = PowerMockito.mock(ElasticSearchGETResponse.class);
         PowerMockito.mockStatic(ElasticSearchGETResponse.Hits.class);
         PowerMockito.mockStatic(ElasticSearchGETResponse.Hits.Source.class);
-        Evidence evidenceMock = mock(Evidence.class);
         ElasticSearchGETResponse.Hits.Source sourceDummy = new ElasticSearchGETResponse.Hits.Source(evidenceMock);
         List<ElasticSearchGETResponse.Hits.Source> sourceDummyList = new ArrayList<>(1);
         sourceDummyList.add(sourceDummy);
