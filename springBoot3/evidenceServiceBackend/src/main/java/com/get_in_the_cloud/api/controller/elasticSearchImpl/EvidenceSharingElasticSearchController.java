@@ -16,7 +16,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/EvidenceSharingAPI/evidences")
+@RequestMapping(value = "/EvidenceSharingAPI/evidences", produces = "application/hal+json")
 @Api(value = "/evidences", description = "Evidences REST API")
 public class EvidenceSharingElasticSearchController implements EvidenceSharingRESTfulAPI {
 
