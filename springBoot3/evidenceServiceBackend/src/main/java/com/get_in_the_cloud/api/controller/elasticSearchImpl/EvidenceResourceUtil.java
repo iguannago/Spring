@@ -13,8 +13,8 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 public class EvidenceResourceUtil {
     public static Resource<Evidence> evidenceToGETResource(Evidence evidence) {
         String evidenceID = evidence.getEvidenceID();
-        Link selfLink = linkTo(methodOn(EvidenceSharingElasticSearchController.class).getEvidenceById(evidenceID)).
-                slash(evidenceID).withSelfRel();
+        Link selfLink = linkTo(methodOn(EvidenceSharingElasticSearchController.class).
+                getEvidenceById(evidenceID)).slash(evidenceID).withSelfRel();
         return new Resource<>(evidence, selfLink);
     }
 
