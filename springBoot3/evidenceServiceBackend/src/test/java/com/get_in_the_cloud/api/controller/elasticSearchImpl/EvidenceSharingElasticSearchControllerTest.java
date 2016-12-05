@@ -67,11 +67,15 @@ public class EvidenceSharingElasticSearchControllerTest {
     @PrepareForTest({EvidenceResourceUtil.class})
     public void testCreateEvidence() throws Exception {
         Evidence dummyEvidence = new Evidence("some dummy Id", "some dummy Content");
-        PowerMockito.mockStatic(EvidenceResourceUtil.class);
-        when(EvidenceResourceUtil.evidenceToPOSTResource(any(Evidence.class))).
-                thenReturn(new Resource<>(dummyEvidence, mock(Link.class)));
+        mockEvidenceToPostResource(dummyEvidence);
         when(restTemplate.postForEntity(anyString(), any(Evidence.class), eq(String.class))).then(
                 invocationOnMock -> new ResponseEntity<String>(HttpStatus.CREATED));
         evidenceSharingElasticSearchController.createEvidence(dummyEvidence);
+    }
+
+    private void mockEvidenceToPostResource(Evidence dummyEvidence) {
+        PowerMockito.mockStatic(EvidenceResourceUtil.class);
+        when(EvidenceResourceUtil.evidenceToPOSTResource(any(Evidence.class))).
+                thenReturn(new Resource<>(dummyEvidence, mock(Link.class)));
     }
 }
