@@ -26,9 +26,9 @@ public class EvidenceSharingElasticSearchControllerIntegrationTest {
 
     @Test
     public void getEvidenceEndpointTest() {
-        ResponseEntity<Evidence> response = restTemplate.getForEntity("/EvidenceSharingAPI/evidences/E002",
-                Evidence.class);
+        ResponseEntity<String> response = restTemplate.getForEntity("/EvidenceSharingAPI/evidences/E002", String.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
+        System.out.println(response);
     }
 
     @Test
@@ -36,6 +36,7 @@ public class EvidenceSharingElasticSearchControllerIntegrationTest {
         ResponseEntity<String> response = restTemplate.postForEntity("/EvidenceSharingAPI/evidences",
                 new Evidence("E98", "some content"), String.class);
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        System.out.println(response);
     }
 
 

@@ -1,7 +1,6 @@
 package com.get_in_the_cloud.api.controller.elasticSearchImpl;
 
 import com.get_in_the_cloud.api.domain.evidence.Evidence;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.hateoas.Resource;
@@ -12,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 public class EvidenceResourceUtilTest {
-    @Test@Ignore
+    @Test
     public void testEvidenceToGETResource() throws Exception {
         Evidence evidence = new Evidence("1", "some content");
         Resource<Evidence> evidenceResource = EvidenceResourceUtil.evidenceToGETResource(evidence);
