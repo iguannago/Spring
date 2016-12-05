@@ -11,14 +11,15 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -38,13 +39,13 @@ public class EvidenceSharingElasticSearchControllerTest {
             ElasticSearchGETResponse.Hits.Source.class})
     public void getEvidenceByIdTest() {
         ElasticSearchGETResponse elasticSearchGETResponseMock = mockElasticSearchGETResponseAndInnerClasses();
-        mockEvidenceResourceUtil();
+        mockEvidenceToGETResource();
         when(restTemplate.getForObject(any(URI.class), eq(ElasticSearchGETResponse.class))).
                 thenReturn(elasticSearchGETResponseMock);
         evidenceSharingElasticSearchController.getEvidenceById("someEvidenceId");
     }
 
-    private void mockEvidenceResourceUtil() {
+    private void mockEvidenceToGETResource() {
         PowerMockito.mockStatic(EvidenceResourceUtil.class);
         when(EvidenceResourceUtil.evidenceToGETResource(any(Evidence.class))).
                 thenReturn(new Resource<>(evidenceMock, mock(Link.class)));
@@ -62,4 +63,15 @@ public class EvidenceSharingElasticSearchControllerTest {
         return elasticSearchGETResponseMock;
     }
 
+    @Test
+    @PrepareForTest({EvidenceResourceUtil.class})
+    public void testCreateEvidence() throws Exception {
+        Evidence dummyEvidence = new Evidence("some dummy Id", "some dummy Content");
+        PowerMockito.mockStatic(EvidenceResourceUtil.class);
+        when(EvidenceResourceUtil.evidenceToPOSTResource(any(Evidence.class))).
+                thenReturn(new Resource<>(dummyEvidence, mock(Link.class)));
+        when(restTemplate.postForEntity(anyString(), any(Evidence.class), eq(String.class))).then(
+                invocationOnMock -> new ResponseEntity<String>(HttpStatus.CREATED));
+        evidenceSharingElasticSearchController.createEvidence(dummyEvidence);
+    }
 }
