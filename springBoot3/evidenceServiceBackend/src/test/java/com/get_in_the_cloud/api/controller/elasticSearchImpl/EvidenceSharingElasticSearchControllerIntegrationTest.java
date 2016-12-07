@@ -35,16 +35,20 @@ public class EvidenceSharingElasticSearchControllerIntegrationTest {
 
     @Test
     public void getEvidenceEndpointTest() throws InterruptedException {
-        IndexRequestBuilder indexRequestBuilder = client.prepareIndex("evidences", "evidence", "E001");
-        Map<String, Object> source = new HashMap<>(1);
-        source.put("evidenceID", "E001");
-        source.put("content", "hey you, this works");
-        indexRequestBuilder.setRefresh(true);
-        indexRequestBuilder.setSource(source);
-        indexRequestBuilder.execute().actionGet();
+        configureAndCreateIndex();
         ResponseEntity<String> response = restTemplate.getForEntity("/EvidenceSharingAPI/evidences/E001", String.class);
         System.out.println(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    private void configureAndCreateIndex() {
+        IndexRequestBuilder indexRequestBuilder = client.prepareIndex("evidences", "evidence", "E001");
+        Map<String, Object> source = new HashMap<>(1);
+        source.put("evidenceID", "E001");
+        source.put("content", "hey you, this works!");
+        indexRequestBuilder.setSource(source);
+        indexRequestBuilder.setRefresh(true);
+        indexRequestBuilder.execute().actionGet();
     }
 
     @Test
