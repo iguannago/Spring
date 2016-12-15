@@ -7,6 +7,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Api(value = "/evidences", description = "Evidences REST API")
 public class EvidenceSharingElasticSearchController implements EvidenceSharingRESTfulAPI {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private RestTemplate restTemplate;
 
@@ -30,7 +34,11 @@ public class EvidenceSharingElasticSearchController implements EvidenceSharingRE
     public Resource<Evidence> getEvidenceById(@PathVariable(required = true) String evidenceId) {
         Evidence evidence = restTemplate.getForObject(getUriForRequest(evidenceId).toUri(),
                 ElasticSearchGETResponse.class).getHits().getHits().get(0).get_source();
-        return EvidenceResourceUtil.evidenceToGETResource(evidence);
+        Resource<Evidence> evidenceResource = EvidenceResourceUtil.evidenceToGETResource(evidence);
+        if (logger.isDebugEnabled()) {
+            logger.debug("GET evidence request: " + evidenceResource);
+        }
+        return evidenceResource;
     }
 
     private UriComponents getUriForRequest(String evidenceId) {
@@ -56,7 +64,11 @@ public class EvidenceSharingElasticSearchController implements EvidenceSharingRE
     public ResponseEntity<Resource<Evidence>> createEvidence(@RequestBody Evidence evidence) {
         ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:9200/evidences/evidence",
                 evidence, String.class);
-        return new ResponseEntity<>(EvidenceResourceUtil.evidenceToPOSTResource(evidence), response.getStatusCode());
+        Resource<Evidence> evidenceResource = EvidenceResourceUtil.evidenceToPOSTResource(evidence);
+        if (logger.isDebugEnabled()) {
+            logger.debug("POST evidence request: " + evidenceResource);
+        }
+        return new ResponseEntity<>(evidenceResource, response.getStatusCode());
     }
 
 }
