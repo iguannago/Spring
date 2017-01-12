@@ -9,7 +9,7 @@ import static org.junit.Assert.assertNotNull;
  */
 public class GameTest {
 
-    private final Player player1 = Player.build("player1", "RED");
+    private final Player player1 = Player.build("player1", PlayerColours.RED);
     private final Game game = player1.startGame("player2");
 
     @Test

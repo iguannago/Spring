@@ -5,14 +5,14 @@ package com.get_in_the_cloud.backend;
  */
 final class Player {
     private final String name;
-    private final String colour;
+    private final PlayerColours colour;
 
-    private Player(String name, String colour) {
+    private Player(String name, PlayerColours colour) {
         this.name = name;
         this.colour = colour;
     }
 
-    static Player build(String name, String colour) {
+    static Player build(String name, PlayerColours colour) {
         return new Player(name, colour);
     }
 
@@ -20,11 +20,11 @@ final class Player {
         return name;
     }
 
-    public String getColour() {
+    PlayerColours getColour() {
         return colour;
     }
 
-    public Game startGame(String player2) {
+    Game startGame(String player2) {
         return new Game();
     }
 
@@ -32,7 +32,7 @@ final class Player {
     public String toString() {
         return "Player{" +
                 "name='" + name + '\'' +
-                ", colour='" + colour + '\'' +
+                ", colour=" + colour +
                 '}';
     }
 }

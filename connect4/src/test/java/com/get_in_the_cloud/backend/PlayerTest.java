@@ -11,9 +11,9 @@ public class PlayerTest {
 
     @Test
     public void playerInstantiation() throws Exception {
-        Player player = Player.build("player1", "RED");
+        Player player = Player.build("player1", PlayerColours.RED);
         assertEquals("player1", player.getName());
-        assertEquals("RED", player.getColour());
+        assertEquals(PlayerColours.RED, player.getColour());
         System.out.println(player);
     }
 
