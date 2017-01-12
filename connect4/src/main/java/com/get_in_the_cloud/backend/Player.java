@@ -3,18 +3,19 @@ package com.get_in_the_cloud.backend;
 /**
  * Created by davicres on 12/01/2017.
  */
-public class Player {
-    private String name;
+final class Player {
+    private final String name;
 
-    public Player(String name) {
+    private Player(String name) {
         this.name = name;
     }
 
-    public String getName() {
+    static Player build(String name) {
+        return new Player(name);
+    }
+
+    String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 }

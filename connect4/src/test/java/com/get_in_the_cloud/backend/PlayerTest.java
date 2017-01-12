@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class PlayerTest {
     @Test
     public void playerInstantiation() throws Exception {
-        Player player = new Player("someName");
+        Player player = Player.build("someName");
         assertEquals("someName", player.getName());
     }
 }

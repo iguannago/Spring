@@ -10,7 +10,7 @@ public class GameTest {
     @Test
     @Ignore
     public void playerStartAGame() throws Exception {
-        Player player = new Player("David");
+//        Player player = new Player("David");
 //        Game = player.startGame();
 
     }
