@@ -18,4 +18,7 @@ final class Player {
         return name;
     }
 
+    public Game startGame(String player2) {
+        return new Game();
+    }
 }
