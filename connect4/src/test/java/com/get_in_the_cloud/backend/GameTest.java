@@ -3,6 +3,7 @@ package com.get_in_the_cloud.backend;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by davicres on 12/01/2017.
@@ -15,6 +16,7 @@ public class GameTest {
         Game game = player1.startGame("Computer");
         assertPlayerIsCreatedCorrectly(game.getPlayer1(), "David", PlayerColours.RED);
         assertPlayerIsCreatedCorrectly(game.getPlayer2(), "Computer", PlayerColours.YELLOW);
+        assertNotNull(game.getGameBoard());
     }
 
     private void assertPlayerIsCreatedCorrectly(Player player, String namePlayerExpected,
