@@ -16,6 +16,10 @@ public class GameTest {
         Player player1 = game.getPlayer1();
         System.out.println(player1);
         assertEquals(davidPlayer, player1);
+        Player player2 = game.getPlayer2();
+        System.out.println(player2);
+        Player player2Expected = Player.build("Computer", PlayerColours.YELLOW);
+        assertEquals(player2Expected, player2);
     }
 
     @Test
