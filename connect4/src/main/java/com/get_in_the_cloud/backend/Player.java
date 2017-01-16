@@ -6,7 +6,7 @@ package com.get_in_the_cloud.backend;
 final class Player {
     private final String name;
     private final PlayerColours colour;
-    private Game game;
+    private  Game game;
 
     private Player(String name, PlayerColours colour) {
         this.name = name;
@@ -25,9 +25,9 @@ final class Player {
         return colour;
     }
 
-    Game startGame(String player2) {
-//        Player.build(player2, this.getColour())
-//        game = new Game(gameBoard, player1);
+    Game startGame(String player2Name) {
+        Player player2 = Player.build(player2Name, this.getColour().switchColour());
+        game = new Game(this, player2);
         return game;
     }
 
@@ -42,5 +42,23 @@ final class Player {
     PlayerColours[][] dropColourDisc(int column) {
         game.getGameBoard()[5][0] = PlayerColours.RED;
         return game.getGameBoard();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Player player = (Player) o;
+
+        if (name != null ? !name.equals(player.name) : player.name != null) return false;
+        return colour == player.colour;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (colour != null ? colour.hashCode() : 0);
+        return result;
     }
 }

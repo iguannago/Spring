@@ -2,6 +2,8 @@ package com.get_in_the_cloud.backend;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Created by davicres on 12/01/2017.
  */
@@ -9,8 +11,11 @@ public class GameTest {
 
     @Test
     public void playerStartAGame() throws Exception {
-        Player player1 = Player.build("player1", PlayerColours.RED);
-        player1.startGame("player2");
+        Player davidPlayer = Player.build("David", PlayerColours.RED);
+        Game game = davidPlayer.startGame("Computer");
+        Player player1 = game.getPlayer1();
+        System.out.println(player1);
+        assertEquals(davidPlayer, player1);
     }
 
     @Test

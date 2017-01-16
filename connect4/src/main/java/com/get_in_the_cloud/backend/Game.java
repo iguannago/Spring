@@ -17,4 +17,12 @@ final class Game {
     PlayerColours[][] getGameBoard() {
         return gameBoard;
     }
+
+    Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
 }
