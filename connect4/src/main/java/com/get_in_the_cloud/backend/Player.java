@@ -26,7 +26,8 @@ final class Player {
     }
 
     Game startGame(String player2) {
-        game = new Game();
+//        Player.build(player2, this.getColour())
+//        game = new Game(gameBoard, player1);
         return game;
     }
 

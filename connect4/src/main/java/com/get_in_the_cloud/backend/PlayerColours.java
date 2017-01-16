@@ -5,4 +5,12 @@ package com.get_in_the_cloud.backend;
  */
 public enum PlayerColours {
     RED, YELLOW;
+
+    PlayerColours switchColour() {
+        if (this.name().equals("RED")) {
+            return PlayerColours.YELLOW;
+        } else {
+            return PlayerColours.RED;
+        }
+    }
 }

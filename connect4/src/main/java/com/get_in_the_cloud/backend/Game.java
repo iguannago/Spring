@@ -4,7 +4,15 @@ package com.get_in_the_cloud.backend;
  * Created by davicres on 12/01/2017.
  */
 final class Game {
-    private PlayerColours[][] gameBoard = new PlayerColours[6][7];
+    private final PlayerColours[][] gameBoard;
+    private final Player player1;
+    private final Player player2;
+
+    Game(Player player1, Player player2) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.gameBoard = new PlayerColours[7][6];
+    }
 
     PlayerColours[][] getGameBoard() {
         return gameBoard;
