@@ -4,23 +4,26 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by davicres on 12/01/2017.
  */
 public class GameTest {
 
-    private final Player player1 = Player.build("player1", PlayerColours.RED);
-    private final Game game = player1.startGame("player2");
-
     @Test
     public void playerStartAGame() throws Exception {
+        Player player1 = Player.build("player1", PlayerColours.RED);
+        Game game = player1.startGame("player2");
         assertNotNull(game);
         PlayerColours[][] gameBoard = game.getGameBoard();
+        assertTrue(gameBoard != null);
     }
 
     @Test
     public void playerDropColourDisc() throws Exception {
+        Player player1 = Player.build("player1", PlayerColours.RED);
+        Game game = player1.startGame("player2");
         printGameBoard(game.getGameBoard());
         int column = 1;
         PlayerColours[][] gameBoard = player1.dropColourDisc(column);
