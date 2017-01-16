@@ -22,7 +22,15 @@ final class Game {
         return player1;
     }
 
-    public Player getPlayer2() {
+    Player getPlayer2() {
         return player2;
+    }
+
+    void dropColourDisc(Player player, int column) {
+        gameBoard[5][0] = player.getColour();
+    }
+
+    boolean connect4() {
+        return false;
     }
 }

@@ -10,10 +10,11 @@ import static org.junit.Assert.assertNotNull;
  */
 public class GameTest {
 
+    private final Player player1 = Player.build("David", PlayerColours.RED);
+    private final Game game = player1.startGame("Computer");
+
     @Test
     public void player1StartAGame() throws Exception {
-        Player player1 = Player.build("David", PlayerColours.RED);
-        Game game = player1.startGame("Computer");
         assertPlayerIsCreatedCorrectly(game.getPlayer1(), "David", PlayerColours.RED);
         assertPlayerIsCreatedCorrectly(game.getPlayer2(), "Computer", PlayerColours.YELLOW);
         assertNotNull(game.getGameBoard());
@@ -28,12 +29,19 @@ public class GameTest {
 
     @Test
     public void playerDropColourDisc() throws Exception {
-        Player player1 = Player.build("David", PlayerColours.RED);
-        Game game = player1.startGame("Computer");
-        game.getPlayer1().dropColourDisc(1);
+        game.dropColourDisc(game.getPlayer1(), 1);
         printGameBoard(game.getGameBoard());
         PlayerColours actualColour = game.getGameBoard()[5][0];
         assertEquals(PlayerColours.RED.name(), actualColour.name());
+    }
+
+    @Test
+    public void player1WinsPlayer2() throws Exception {
+        game.dropColourDisc(player1, 1);
+        assertEquals(PlayerColours.RED.name(), game.getGameBoard()[5][0].name());
+        printGameBoard(game.getGameBoard());
+        boolean result = game.connect4();
+        assertEquals(false, result);
     }
 
     private void printGameBoard(PlayerColours[][] gameBoard) {
