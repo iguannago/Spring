@@ -10,16 +10,18 @@ import static org.junit.Assert.assertEquals;
 public class GameTest {
 
     @Test
-    public void playerStartAGame() throws Exception {
-        Player davidPlayer = Player.build("David", PlayerColours.RED);
-        Game game = davidPlayer.startGame("Computer");
-        Player player1 = game.getPlayer1();
-        System.out.println(player1);
-        assertEquals(davidPlayer, player1);
-        Player player2 = game.getPlayer2();
-        System.out.println(player2);
-        Player player2Expected = Player.build("Computer", PlayerColours.YELLOW);
-        assertEquals(player2Expected, player2);
+    public void player1StartAGame() throws Exception {
+        Player player1 = Player.build("David", PlayerColours.RED);
+        Game game = player1.startGame("Computer");
+        assertPlayerIsCreatedCorrectly(game.getPlayer1(), "David", PlayerColours.RED);
+        assertPlayerIsCreatedCorrectly(game.getPlayer2(), "Computer", PlayerColours.YELLOW);
+    }
+
+    private void assertPlayerIsCreatedCorrectly(Player player, String namePlayerExpected,
+                                                PlayerColours colourPlayerExpected) {
+        System.out.println(player);
+        Player playerExpected = Player.build(namePlayerExpected, colourPlayerExpected);
+        assertEquals(playerExpected, player);
     }
 
     @Test
