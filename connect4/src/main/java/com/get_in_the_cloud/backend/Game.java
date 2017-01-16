@@ -11,7 +11,7 @@ final class Game {
     Game(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
-        this.gameBoard = new PlayerColours[7][6];
+        this.gameBoard = new PlayerColours[6][7];
     }
 
     PlayerColours[][] getGameBoard() {

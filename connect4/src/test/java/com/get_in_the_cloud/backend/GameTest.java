@@ -28,13 +28,12 @@ public class GameTest {
 
     @Test
     public void playerDropColourDisc() throws Exception {
-//        Player player1 = Player.build("player1", PlayerColours.RED);
-//        Game game = player1.startGame("player2");
-//        printGameBoard(game.getGameBoard());
-//        int column = 1;
-//        PlayerColours[][] gameBoard = player1.dropColourDisc(column);
-//        assertEquals(PlayerColours.RED, gameBoard[5][0]);
-//        printGameBoard(gameBoard);
+        Player player1 = Player.build("David", PlayerColours.RED);
+        Game game = player1.startGame("Computer");
+        game.getPlayer1().dropColourDisc(1);
+        printGameBoard(game.getGameBoard());
+        PlayerColours actualColour = game.getGameBoard()[5][0];
+        assertEquals(PlayerColours.RED.name(), actualColour.name());
     }
 
     private void printGameBoard(PlayerColours[][] gameBoard) {

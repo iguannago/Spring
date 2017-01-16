@@ -39,9 +39,8 @@ final class Player {
                 '}';
     }
 
-    PlayerColours[][] dropColourDisc(int column) {
+    void dropColourDisc(int column) {
         game.getGameBoard()[5][0] = PlayerColours.RED;
-        return game.getGameBoard();
     }
 
     @Override
