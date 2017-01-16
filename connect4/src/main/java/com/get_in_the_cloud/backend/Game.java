@@ -27,7 +27,12 @@ final class Game {
     }
 
     void dropColourDisc(Player player, int column) {
-        gameBoard[5][0] = player.getColour();
+        if (column == 1) {
+            gameBoard[5][0] = player.getColour();
+        }
+        if (column == 2) {
+            gameBoard[5][1] = player.getColour();
+        }
     }
 
     boolean connect4() {

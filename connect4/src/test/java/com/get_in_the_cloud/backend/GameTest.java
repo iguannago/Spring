@@ -33,6 +33,9 @@ public class GameTest {
         printGameBoard(game.getGameBoard());
         PlayerColours actualColour = game.getGameBoard()[5][0];
         assertEquals(PlayerColours.RED.name(), actualColour.name());
+        game.dropColourDisc(game.getPlayer1(), 2);
+        actualColour = game.getGameBoard()[5][1];
+        assertEquals(PlayerColours.RED.name(), actualColour.name());
     }
 
     @Test
@@ -40,6 +43,7 @@ public class GameTest {
         game.dropColourDisc(player1, 1);
         assertEquals(PlayerColours.RED.name(), game.getGameBoard()[5][0].name());
         printGameBoard(game.getGameBoard());
+//        game.dropColourDisc(game.getPlayer2(), 2);
         boolean result = game.connect4();
         assertEquals(false, result);
     }
