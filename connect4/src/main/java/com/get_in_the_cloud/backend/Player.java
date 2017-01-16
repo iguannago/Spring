@@ -6,6 +6,7 @@ package com.get_in_the_cloud.backend;
 final class Player {
     private final String name;
     private final PlayerColours colour;
+    private Game game;
 
     private Player(String name, PlayerColours colour) {
         this.name = name;
@@ -25,7 +26,8 @@ final class Player {
     }
 
     Game startGame(String player2) {
-        return new Game();
+        game = new Game();
+        return game;
     }
 
     @Override
@@ -34,5 +36,10 @@ final class Player {
                 "name='" + name + '\'' +
                 ", colour=" + colour +
                 '}';
+    }
+
+    PlayerColours[][] dropColourDisc(int column) {
+        game.getGameBoard()[5][0] = PlayerColours.RED;
+        return game.getGameBoard();
     }
 }

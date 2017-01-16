@@ -2,6 +2,7 @@ package com.get_in_the_cloud.backend;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -15,18 +16,19 @@ public class GameTest {
     @Test
     public void playerStartAGame() throws Exception {
         assertNotNull(game);
+        PlayerColours[][] gameBoard = game.getGameBoard();
     }
 
     @Test
     public void playerDropColourDisc() throws Exception {
-        boolean[][] gameBoard = new boolean[6][7];
-        printGameBoard(gameBoard);
+        printGameBoard(game.getGameBoard());
         int column = 1;
-//        gameBoard = player1.dropColourDisc(gameBoard, column);
-//        assertEquals(true, gameBoard[5][0]);
+        PlayerColours[][] gameBoard = player1.dropColourDisc(column);
+        assertEquals(PlayerColours.RED, gameBoard[5][0]);
+        printGameBoard(gameBoard);
     }
 
-    private void printGameBoard(boolean[][] gameBoard) {
+    private void printGameBoard(PlayerColours[][] gameBoard) {
         System.out.println("gameBoard: ");
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
