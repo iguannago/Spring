@@ -29,6 +29,9 @@ final class Game {
     }
 
     void dropColourDisc(Player player, int column) {
+        if (column - 1 > COLUMNS) {
+            throw new ArrayIndexOutOfBoundsException("Column Number is Incorrect");
+        }
         gameBoard[ROWS - 1][column - 1] = player.getColour();
     }
 

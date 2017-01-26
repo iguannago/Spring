@@ -31,8 +31,8 @@ public class GameTest {
     }
 
     @Test
-    @Parameters({"1", "2", "3"})
-    public void playerDropsColourDisc(int column) throws Exception {
+    @Parameters({"1", "2", "3", "4", "5", "6", "7"})
+    public void player1DropsColourDisc(int column) throws Exception {
         game.dropColourDisc(game.getPlayer1(), column);
         printGameBoard(game.getGameBoard());
         PlayerColours actualColour = game.getGameBoard()[5][column - 1];
@@ -41,6 +41,17 @@ public class GameTest {
 //        actualColour = game.getGameBoard()[5][1];
 //        assertEquals(PlayerColours.RED.name(), actualColour.name());
     }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Parameters({"8", "9"})
+    public void player1DropsColourDiscInAIncorrectColumn(int column) throws Exception {
+        game.dropColourDisc(game.getPlayer1(), column);
+        printGameBoard(game.getGameBoard());
+        PlayerColours actualColour = game.getGameBoard()[5][column - 1];
+        assertEquals(PlayerColours.RED.name(), actualColour.name());
+    }
+
+
 
     @Test
     public void player1WinsPlayer2() throws Exception {
