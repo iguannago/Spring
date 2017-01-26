@@ -31,11 +31,11 @@ public class GameTest {
     }
 
     @Test
-    @Parameters({"1"})
+    @Parameters({"1", "2", "3"})
     public void playerDropsColourDisc(int column) throws Exception {
         game.dropColourDisc(game.getPlayer1(), column);
         printGameBoard(game.getGameBoard());
-        PlayerColours actualColour = game.getGameBoard()[5][0];
+        PlayerColours actualColour = game.getGameBoard()[5][column - 1];
         assertEquals(PlayerColours.RED.name(), actualColour.name());
 //        game.dropColourDisc(game.getPlayer1(), column);
 //        actualColour = game.getGameBoard()[5][1];
