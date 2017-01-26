@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by davicres on 12/01/2017.
@@ -32,14 +33,26 @@ public class GameTest {
 
     @Test
     @Parameters({"1", "2", "3", "4", "5", "6", "7"})
-    public void player1DropsColourDisc(int column) throws Exception {
+    public void player1DropsColourDiscOnEachColumn(int column) throws Exception {
         game.dropColourDisc(game.getPlayer1(), column);
         printGameBoard(game.getGameBoard());
         PlayerColours actualColour = game.getGameBoard()[5][column - 1];
         assertEquals(PlayerColours.RED.name(), actualColour.name());
-//        game.dropColourDisc(game.getPlayer1(), column);
-//        actualColour = game.getGameBoard()[5][1];
-//        assertEquals(PlayerColours.RED.name(), actualColour.name());
+    }
+
+    @Test
+    public void player1DropsColourDiscOnSameRowTwoTimes() throws Exception {
+        game.dropColourDisc(game.getPlayer1(), 1);
+        printGameBoard(game.getGameBoard());
+        PlayerColours actualColourInRow6 = game.getGameBoard()[5][0];
+        PlayerColours actualColourInRow5 = game.getGameBoard()[4][0];
+        assertEquals(PlayerColours.RED.name(), actualColourInRow6.name());
+        assertNull(actualColourInRow5);
+
+        game.dropColourDisc(game.getPlayer1(), 1);
+        printGameBoard(game.getGameBoard());
+        actualColourInRow6 = game.getGameBoard()[4][0];
+        assertEquals(PlayerColours.RED.name(), actualColourInRow6.name());
     }
 
     @Test(expected = ArrayIndexOutOfBoundsException.class)
@@ -50,7 +63,6 @@ public class GameTest {
         PlayerColours actualColour = game.getGameBoard()[5][column - 1];
         assertEquals(PlayerColours.RED.name(), actualColour.name());
     }
-
 
 
     @Test

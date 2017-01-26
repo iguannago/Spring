@@ -32,7 +32,11 @@ final class Game {
         if (column - 1 > COLUMNS) {
             throw new ArrayIndexOutOfBoundsException("Column Number is Incorrect");
         }
-        gameBoard[ROWS - 1][column - 1] = player.getColour();
+        if (gameBoard[ROWS - 1][column - 1] == null) {
+            gameBoard[ROWS - 1][column - 1] = player.getColour();
+        } else {
+            gameBoard[ROWS - 2][column - 1] = player.getColour();
+        }
     }
 
     boolean connect4() {
