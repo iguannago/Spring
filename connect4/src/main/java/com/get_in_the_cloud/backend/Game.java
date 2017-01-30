@@ -1,32 +1,19 @@
 package com.get_in_the_cloud.backend;
 
+import lombok.Builder;
+import lombok.Value;
+
 /**
  * Created by davicres on 12/01/2017.
  */
+@Value
+@Builder
 final class Game {
     private static final int ROWS = 6;
     private static final int COLUMNS = 7;
-    private final PlayerColours[][] gameBoard;
+    private final PlayerColours[][] gameBoard = new PlayerColours[ROWS][COLUMNS];
     private final Player player1;
     private final Player player2;
-
-    Game(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
-        this.gameBoard = new PlayerColours[ROWS][COLUMNS];
-    }
-
-    PlayerColours[][] getGameBoard() {
-        return gameBoard;
-    }
-
-    Player getPlayer1() {
-        return player1;
-    }
-
-    Player getPlayer2() {
-        return player2;
-    }
 
     void dropColourDisc(Player player, int column) {
         if (column - 1 > COLUMNS) {
