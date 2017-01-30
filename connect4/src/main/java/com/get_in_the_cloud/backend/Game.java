@@ -15,14 +15,14 @@ final class Game {
     private final Player player1;
     private final Player player2;
 
-    PlayerColours dropColourDisc(Player player, int column) {
+    PlayerColours dropColourDisc(Player player, int column, int row) {
         System.out.println("dropColourDisc:");
         System.out.println(player);
         System.out.println("column: " + column);
-        if (gameBoard[ROWS - 1][column - 1] == null) {
-            return gameBoard[ROWS - 1][column - 1] = player.getColour();
+        if (gameBoard[row - 1][column - 1] == null) {
+            return gameBoard[row - 1][column - 1] = player.getColour();
         }
-        return null;
+        return dropColourDisc(player, column, --row);
     }
 
     boolean connect4() {
