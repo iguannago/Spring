@@ -38,12 +38,20 @@ public class GameTest {
         assertEquals(game.getPlayer1().getColour().name(), actualColour.name());
     }
 
-    @Test
-    public void player1DropsColourDiscOnSameRowTwoTimes() throws Exception {
+    @Test@Ignore
+    public void player1DropsColourDiscOnSameRow() throws Exception {
         int column = 1;
         givenTheColumnIsEmpty(column);
         whenPlayerDropsColourDiscOnTheColumn(column, game.getPlayer1());
         assertEquals(game.getPlayer1().getColour().name(), game.getGameBoard()[5][column - 1].name());
+        printColumn(column);
+
+        whenPlayerDropsColourDiscOnTheColumn(column, game.getPlayer1());
+        assertEquals(game.getPlayer1().getColour().name(), game.getGameBoard()[4][column - 1].name());
+        printColumn(column);
+
+        whenPlayerDropsColourDiscOnTheColumn(column, game.getPlayer1());
+        assertEquals(game.getPlayer1().getColour().name(), game.getGameBoard()[3][column - 1].name());
         printColumn(column);
 
 
@@ -77,6 +85,7 @@ public class GameTest {
         }
     }
 
+    @Ignore
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     @Parameters({"8", "9"})
     public void player1DropsColourDiscInAIncorrectColumn(int column) throws Exception {

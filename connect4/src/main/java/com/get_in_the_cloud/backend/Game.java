@@ -15,15 +15,14 @@ final class Game {
     private final Player player1;
     private final Player player2;
 
-    void dropColourDisc(Player player, int column) {
-        if (column - 1 > COLUMNS) {
-            throw new ArrayIndexOutOfBoundsException("Column Number is Incorrect");
-        }
+    PlayerColours dropColourDisc(Player player, int column) {
+        System.out.println("dropColourDisc:");
+        System.out.println(player);
+        System.out.println("column: " + column);
         if (gameBoard[ROWS - 1][column - 1] == null) {
-            gameBoard[ROWS - 1][column - 1] = player.getColour();
-        } else {
-            gameBoard[ROWS - 2][column - 1] = player.getColour();
+            return gameBoard[ROWS - 1][column - 1] = player.getColour();
         }
+        return null;
     }
 
     boolean connect4() {
