@@ -47,28 +47,12 @@ public class GameTest {
         givenTheColumnIsEmpty(column);
         printGameBoard(game.getGameBoard());
 
-        whenPlayerDropsColourDiscOnTheColumn(column, row, game.getPlayer1());
-        assertEquals(game.getPlayer1().getColour().name(), game.getGameBoard()[row -1][column - 1].name());
-        printGameBoard(game.getGameBoard());
-
-        whenPlayerDropsColourDiscOnTheColumn(column, row, game.getPlayer1());
-        assertEquals(game.getPlayer1().getColour().name(), game.getGameBoard()[row - 2][column - 1].name());
-        printGameBoard(game.getGameBoard());
-//
-//        whenPlayerDropsColourDiscOnTheColumn(column, row, game.getPlayer1());
-//        assertEquals(game.getPlayer1().getColour().name(), game.getGameBoard()[3][column - 1].name());
-//        printGameBoard(game.getGameBoard());
-
-
-//        game.dropCol ourDisc(game.getPlayer1(), column);
-//        actualColourInRow6 = game.getGameBoard()[4][0];
-//        assertEquals(PlayerColours.RED.name(), actualColourInRow6.name());
-//        printColumn(column);
-
-//        game.dropColourDisc(game.getPlayer1(), 1);
-//        printGameBoard(game.getGameBoard());
-//        actualColourInRow6 = game.getGameBoard()[3][0];
-//        assertEquals(PlayerColours.RED.name(), actualColourInRow6.name());
+        while (row > 0) {
+            whenPlayerDropsColourDiscOnTheColumn(column, row, game.getPlayer1());
+            assertEquals(game.getPlayer1().getColour().name(), game.getGameBoard()[row - 1][column - 1].name());
+            printGameBoard(game.getGameBoard());
+            --row;
+        }
     }
 
     private void whenPlayerDropsColourDiscOnTheColumn(int column, int row, Player player1) {
@@ -123,7 +107,6 @@ public class GameTest {
             }
         }
     }
-
 
 
 }
