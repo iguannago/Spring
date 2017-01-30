@@ -51,9 +51,9 @@ public class GameTest {
         assertEquals(game.getPlayer1().getColour().name(), game.getGameBoard()[row -1][column - 1].name());
         printGameBoard(game.getGameBoard());
 
-//        whenPlayerDropsColourDiscOnTheColumn(column, row, game.getPlayer1());
-//        assertEquals(game.getPlayer1().getColour().name(), game.getGameBoard()[4][column - 1].name());
-//        printGameBoard(game.getGameBoard());
+        whenPlayerDropsColourDiscOnTheColumn(column, row, game.getPlayer1());
+        assertEquals(game.getPlayer1().getColour().name(), game.getGameBoard()[row - 2][column - 1].name());
+        printGameBoard(game.getGameBoard());
 //
 //        whenPlayerDropsColourDiscOnTheColumn(column, row, game.getPlayer1());
 //        assertEquals(game.getPlayer1().getColour().name(), game.getGameBoard()[3][column - 1].name());

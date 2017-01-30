@@ -19,6 +19,7 @@ final class Game {
         System.out.println("dropColourDisc:");
         System.out.println(player);
         System.out.println("column: " + column);
+        System.out.println("row: " + row);
         if (gameBoard[row - 1][column - 1] == null) {
             return gameBoard[row - 1][column - 1] = player.getColour();
         }
