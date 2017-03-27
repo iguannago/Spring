@@ -9,16 +9,19 @@ import lombok.Value;
 final class Game {
     private static final int ROWS = 6;
     private static final int COLUMNS = 7;
-    private final PlayerColours[][] gameBoard = new PlayerColours[COLUMNS][ROWS];
+    private final PlayerColours[][] gameBoard;
     private final Player player1;
     private final Player player2;
+    private final String outcome;
 
 
-    boolean connect4() {
-        return false;
+    public Game dropDisc(Player player, int column) {
+        PlayerColours[][] gameBoard = new PlayerColours[COLUMNS][ROWS];
+        gameBoard[--column][ROWS - 1] = player.getColour();
+        return new Game(gameBoard, player1, player2, "no outcome yet");
     }
 
-    public void dropDisc(Player player, int column) {
-        gameBoard[--column][5] = player.getColour();
+    public String getOutcome() {
+        return outcome;
     }
 }
