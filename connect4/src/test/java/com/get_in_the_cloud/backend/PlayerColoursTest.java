@@ -12,12 +12,9 @@ public class PlayerColoursTest {
     public void switchColour() throws Exception {
         PlayerColours colour = PlayerColours.RED;
         assertEquals("RED", colour.name());
-        System.out.println("colour is: " + colour);
         colour = colour.switchColour();
         assertEquals("YELLOW", colour.name());
-        System.out.println("switch and colour is: " + colour);
         colour = colour.switchColour();
         assertEquals("RED", colour.name());
-        System.out.println("switch and colour is: " + colour);
     }
 }

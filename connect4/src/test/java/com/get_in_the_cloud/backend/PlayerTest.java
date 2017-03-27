@@ -11,9 +11,8 @@ public class PlayerTest {
 
     @Test
     public void playerInstantiation() throws Exception {
-        Player player = Player.builder().name("player1").colour(PlayerColours.RED).build();
-        assertEquals("player1", player.getName());
-        assertEquals(PlayerColours.RED, player.getColour());
+        Player player1 = Player.of("player1", PlayerColours.RED);
+        assertEquals(Player.of("player1", PlayerColours.RED), player1);
     }
 
 }
