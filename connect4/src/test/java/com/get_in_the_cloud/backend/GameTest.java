@@ -1,9 +1,7 @@
 package com.get_in_the_cloud.backend;
 
-import junitparams.JUnitParamsRunner;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -11,7 +9,6 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by davicres on 12/01/2017.
  */
-@RunWith(JUnitParamsRunner.class)
 public class GameTest {
 
     private final Player player1 = Player.of("Player1", PlayerColours.RED);
