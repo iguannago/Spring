@@ -20,10 +20,10 @@ final class Game {
     }
 
     private Game dropDiscRecursive(Player player, int column, int row) {
-        PlayerColours cell = gameBoard[column - 1][row - 1];
+        PlayerColours cell = gameBoard[row - 1][column - 1];
         if (cell == null) {
             PlayerColours[][] newGameBoard = gameBoard.clone();
-            newGameBoard[column - 1][row - 1] = player.getColour();
+            newGameBoard[row - 1][column - 1] = player.getColour();
             return new Game(newGameBoard, player1, player2, workOutOutcome(player1, row));
         }
         return dropDiscRecursive(player, column, --row);

@@ -16,7 +16,7 @@ public class GameTest {
 
     private final Player player1 = Player.of("Player1", PlayerColours.RED);
     private final Player player2 = Player.of("Player2", PlayerColours.YELLOW);
-    private Game game = Game.of(new PlayerColours[7][6], player1, player2, "no outcome yet");
+    private Game game = Game.of(new PlayerColours[6][7], player1, player2, "no outcome yet");
 
     @Test
     public void gameIsStarted() {
@@ -31,7 +31,7 @@ public class GameTest {
     @Parameters({"1", "2", "3", "4", "5", "6", "7"})
     public void playerDropsDiscOnANonFullColumn(int column) {
         game = game.dropDisc(player1, column);
-        assertEquals(PlayerColours.RED, game.getGameBoard()[column - 1][5]);
+        assertEquals(PlayerColours.RED, game.getGameBoard()[5][column - 1]);
     }
 
     @Test
@@ -40,7 +40,7 @@ public class GameTest {
         int rows = 6;
         for (int i = 1; i <= 4; i++) {
             game = game.dropDisc(player1, column);
-            assertEquals(PlayerColours.RED, game.getGameBoard()[0][rows - i]);
+            assertEquals(PlayerColours.RED, game.getGameBoard()[rows - i][0]);
         }
         assertEquals("Player1 wins", game.getOutcome());
     }
