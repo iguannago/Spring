@@ -31,11 +31,11 @@ public class GameTest {
     @Parameters({"1", "2", "3", "4", "5", "6", "7"})
     public void playerDropsDiscOnANonFullColumn(int column) {
         game = game.dropDisc(player1, column);
-        assertEquals(PlayerColours.RED, game.getGameBoard()[--column][5]);
+        assertEquals(PlayerColours.RED, game.getGameBoard()[column - 1][5]);
     }
 
     @Test
-    public void player1DropsDisc4TimesOnColumnToWinGame() throws Exception {
+    public void playerDropsDisc4TimesOnColumnToWinGame() throws Exception {
         int column = 1;
         int rows = 6;
         for (int i = 1; i <= 4; i++) {
