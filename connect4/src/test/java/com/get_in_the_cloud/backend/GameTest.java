@@ -1,6 +1,7 @@
 package com.get_in_the_cloud.backend;
 
 import junitparams.JUnitParamsRunner;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -61,7 +62,7 @@ public class GameTest {
         return playerDropsDisc4TimesRecursive(++count, column, --row, nextGame);
     }
 
-    @Test
+    @Test@Ignore
     public void workoutGameOutcomeForGivenGame() throws Exception {
         Game givenGame = givenAGame();
         Game nextGame = givenGame.dropDisc(player1, 4);
