@@ -20,12 +20,12 @@ final class Game {
         PlayerColours colourAt = gameBoard.getColourAt(row, column);
         if (colourAt == null) {
             GameBoard nextGameBoard = gameBoard.setColourAt(row, column, player.getColour());
-            return new Game(player1, player2, nextGameBoard, workOutOutcome(player1, row));
+            return new Game(player1, player2, nextGameBoard, workOutOutcome(player1, row, column, gameBoard));
         }
         return dropDiscRecursive(player, column, --row);
     }
 
-    private String workOutOutcome(Player player, int row) {
+    private String workOutOutcome(Player player, int row, int column, GameBoard gameBoard) {
         if (row == 3) {
             return player.getName() + " wins";
         }

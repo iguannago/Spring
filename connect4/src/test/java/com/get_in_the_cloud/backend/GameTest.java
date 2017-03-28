@@ -31,7 +31,7 @@ public class GameTest {
         int discDropTimes = 7;
         int column = 1;
         int row = 6;
-        Game finalGame = dropDiscRecursive(discDropTimes, row, column, game);
+        dropDiscRecursive(discDropTimes, row, column, game);
     }
 
     private Game dropDiscRecursive(int discDropTimes, int row, int column, Game game) {
@@ -59,5 +59,21 @@ public class GameTest {
         Game nextGame = game.dropDisc(player1, column);
         assertEquals(player1.getColour(), nextGame.getGameBoard().getColourAt(row, column));
         return playerDropsDisc4TimesRecursive(++count, column, --row, nextGame);
+    }
+
+    @Test
+    public void workoutGameOutcomeForGivenGame() throws Exception {
+        Game givenGame = givenAGame();
+        Game nextGame = givenGame.dropDisc(player1, 4);
+        assertEquals("Player1 wins", nextGame.getOutcome());
+    }
+
+    private Game givenAGame() {
+        PlayerColours[][] board = new PlayerColours[6][7];
+        board[5][0] = PlayerColours.RED;
+        board[5][1] = PlayerColours.RED;
+        board[5][2] = PlayerColours.RED;
+        GameBoard gameBoard = GameBoard.of(board);
+        return Game.of(player1, player2, gameBoard, "no outcome yet");
     }
 }
