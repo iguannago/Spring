@@ -1,7 +1,6 @@
 package com.get_in_the_cloud.backend;
 
 import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -28,10 +27,20 @@ public class GameTest {
     }
 
     @Test
-    @Parameters({"1", "2", "3", "4", "5", "6", "7"})
-    public void playerDropsDiscOnANonFullColumn(int column) {
+    public void playerDropsDiscOnANonFullColumn() {
+        int discDropTimes = 7;
+        int column = 1;
+        int row = 6;
+        Game finalGame = dropDiscRecursive(discDropTimes, row, column, game);
+    }
+
+    private Game dropDiscRecursive(int discDropTimes, int row, int column, Game game) {
+        if (discDropTimes == 1) {
+            return game;
+        }
         Game nextGame = game.dropDisc(player1, column);
-        assertEquals(PlayerColours.RED, nextGame.getGameBoard().getColourAt(6, column));
+        assertEquals(player1.getColour(), nextGame.getGameBoard().getColourAt(row, column));
+        return dropDiscRecursive(--discDropTimes, --row, column, nextGame);
     }
 
     @Test
