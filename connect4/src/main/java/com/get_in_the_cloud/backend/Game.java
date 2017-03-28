@@ -16,9 +16,24 @@ final class Game {
 
 
     public Game dropDisc(Player player, int column) {
-        PlayerColours[][] gameBoard = new PlayerColours[COLUMNS][ROWS];
-        gameBoard[--column][ROWS - 1] = player.getColour();
-        return new Game(gameBoard, player1, player2, "no outcome yet");
+        return dropDiscRecursive(player, column, ROWS);
+    }
+
+    private Game dropDiscRecursive(Player player, int column, int row) {
+        PlayerColours cell = gameBoard[column - 1][row - 1];
+        if (cell == null) {
+            PlayerColours[][] newGameBoard = gameBoard.clone();
+            newGameBoard[column - 1][row - 1] = player.getColour();
+            return new Game(newGameBoard, player1, player2, workOutOutcome(player1, row));
+        }
+        return dropDiscRecursive(player, column, --row);
+    }
+
+    private String workOutOutcome(Player player, int row) {
+        if (row == 3) {
+            return player.getName() + " wins";
+        }
+        return "no outcome yet";
     }
 
     public String getOutcome() {
