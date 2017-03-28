@@ -48,16 +48,16 @@ public class GameTest {
         int column = 1;
         int row = 6;
         int count = 1;
-        Game finalGame = playerDropDisc4TimesRecursive(count, column, row, game);
+        Game finalGame = playerDropsDisc4TimesRecursive(count, column, row, game);
         assertEquals("Player1 wins", finalGame.getOutcome());
     }
 
-    private Game playerDropDisc4TimesRecursive(int count, int column, int row, Game game) {
+    private Game playerDropsDisc4TimesRecursive(int count, int column, int row, Game game) {
         if (count > 4) {
             return game;
         }
         Game nextGame = game.dropDisc(player1, column);
         assertEquals(player1.getColour(), nextGame.getGameBoard().getColourAt(row, column));
-        return playerDropDisc4TimesRecursive(++count, column, --row, nextGame);
+        return playerDropsDisc4TimesRecursive(++count, column, --row, nextGame);
     }
 }
