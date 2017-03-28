@@ -7,24 +7,20 @@ import lombok.Value;
  */
 @Value(staticConstructor = "of")
 final class Game {
-    private static final int ROWS = 6;
-    private static final int COLUMNS = 7;
-    private final PlayerColours[][] gameBoard;
     private final Player player1;
     private final Player player2;
+    private final GameBoard gameBoard;
     private final String outcome;
 
-
     public Game dropDisc(Player player, int column) {
-        return dropDiscRecursive(player, column, ROWS);
+        return dropDiscRecursive(player, column, GameBoard.ROWS);
     }
 
     private Game dropDiscRecursive(Player player, int column, int row) {
-        PlayerColours cell = gameBoard[row - 1][column - 1];
-        if (cell == null) {
-            PlayerColours[][] newGameBoard = gameBoard.clone();
-            newGameBoard[row - 1][column - 1] = player.getColour();
-            return new Game(newGameBoard, player1, player2, workOutOutcome(player1, row));
+        PlayerColours colourAt = gameBoard.getColourAt(row, column);
+        if (colourAt == null) {
+            GameBoard nextGameBoard = gameBoard.setColourAt(row, column, player.getColour());
+            return new Game(player1, player2, nextGameBoard, workOutOutcome(player1, row));
         }
         return dropDiscRecursive(player, column, --row);
     }

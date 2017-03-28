@@ -16,7 +16,7 @@ public class GameTest {
 
     private final Player player1 = Player.of("Player1", PlayerColours.RED);
     private final Player player2 = Player.of("Player2", PlayerColours.YELLOW);
-    private Game game = Game.of(new PlayerColours[6][7], player1, player2, "no outcome yet");
+    private final Game game = Game.of(player1, player2, GameBoard.of(new PlayerColours[6][7]), "no outcome yet");
 
     @Test
     public void gameIsStarted() {
@@ -30,18 +30,25 @@ public class GameTest {
     @Test
     @Parameters({"1", "2", "3", "4", "5", "6", "7"})
     public void playerDropsDiscOnANonFullColumn(int column) {
-        game = game.dropDisc(player1, column);
-        assertEquals(PlayerColours.RED, game.getGameBoard()[5][column - 1]);
+        Game nextGame = game.dropDisc(player1, column);
+        assertEquals(PlayerColours.RED, nextGame.getGameBoard().getColourAt(6, column));
     }
 
     @Test
     public void playerDropsDisc4TimesOnColumnToWinGame() throws Exception {
         int column = 1;
-        int rows = 6;
-        for (int i = 1; i <= 4; i++) {
-            game = game.dropDisc(player1, column);
-            assertEquals(PlayerColours.RED, game.getGameBoard()[rows - i][0]);
+        int row = 6;
+        int count = 1;
+        Game finalGame = playerDropDisc4TimesRecursive(count, column, row, game);
+        assertEquals("Player1 wins", finalGame.getOutcome());
+    }
+
+    private Game playerDropDisc4TimesRecursive(int count, int column, int row, Game game) {
+        if (count > 4) {
+            return game;
         }
-        assertEquals("Player1 wins", game.getOutcome());
+        Game nextGame = game.dropDisc(player1, column);
+        assertEquals(player1.getColour(), nextGame.getGameBoard().getColourAt(row, column));
+        return playerDropDisc4TimesRecursive(++count, column, --row, nextGame);
     }
 }
