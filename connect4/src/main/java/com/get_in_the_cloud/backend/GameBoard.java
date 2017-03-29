@@ -16,7 +16,7 @@ public class GameBoard {
     private final PlayerColours[][] board;
 
 
-    public PlayerColours getColourAt(int row, int column) {
+    public PlayerColours getCellColourForGivenRowAndColumn(int row, int column) {
         return board[row - 1][column - 1];
     }
 
