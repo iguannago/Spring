@@ -33,19 +33,21 @@ final class Game {
         List<String> movements = new ArrayList<>(2);
         movements.add("left");
         movements.add("up");
+        String outcome = "no yet outcome";
         for (String move : movements) {
             if (move.equals("left") && column >= 4) {
                 --column;
+                outcome = workoutOutcomeRecursive(counter, move, player, row, column, gameBoard);
             }
             if (move.equals("up") && row >= 4) {
                 --row;
+                outcome = workoutOutcomeRecursive(counter, move, player, row, column, gameBoard);
             }
-            String partialOutcome = workoutOutcomeRecursive(counter, move, player, row, column, gameBoard);
-            if (partialOutcome.equals(player.getName() + " wins")) {
-                return partialOutcome;
+            if (outcome.equals(player.getName() + " wins")) {
+                return outcome;
             }
         }
-        return "no outcome yet";
+        return outcome;
     }
 
     private String workoutOutcomeRecursive(int counter, String move, Player player, int row, int column,
@@ -56,7 +58,7 @@ final class Game {
             if (counter == 4) {
                 return player.getName() + " wins";
             }
-            if (move.equals("left") && column >= 4) {
+            if (move.equals("left")) {
                 --column;
                 return workoutOutcomeRecursive(counter, move, player, row, column, gameBoard);
             }
