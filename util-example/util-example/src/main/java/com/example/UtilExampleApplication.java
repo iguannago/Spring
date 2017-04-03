@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
+import org.springframework.util.SystemPropertyUtils;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Constructor;
@@ -40,7 +41,13 @@ public class UtilExampleApplication {
             Assert.notNull(demo.getList(), "the list cannot be null");
             beanUtils(demo);
             classUtils();
+            systemPropertyUtils();
         };
+    }
+
+    private void systemPropertyUtils() {
+        String resolvePlaceholders = SystemPropertyUtils.resolvePlaceholders("my user home is: ${user.home}");
+        log.info("resolvePlaceholders: " + resolvePlaceholders);
     }
 
     private void classUtils() {
