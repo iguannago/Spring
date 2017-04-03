@@ -11,9 +11,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.util.SystemPropertyUtils;
 
 import java.beans.PropertyDescriptor;
+import java.io.File;
+import java.io.FileReader;
+import java.io.Reader;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +46,18 @@ public class UtilExampleApplication {
             beanUtils(demo);
             classUtils();
             systemPropertyUtils();
+            fileCopyUtils();
         };
+    }
+
+    private void fileCopyUtils() {
+        File file = new File(SystemPropertyUtils.resolvePlaceholders("${user.home}"),
+                "/data/myGitHub/spring/util-example/util-example/tips.txt");
+        try (Reader reader = new FileReader(file)) {
+            log.info("file reader: " + FileCopyUtils.copyToString(reader));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void systemPropertyUtils() {
@@ -57,7 +72,7 @@ public class UtilExampleApplication {
             DemoClass demoClass = demoClassConstructor.newInstance();
             log.info("new instance: " + demoClass);
         } catch (Exception e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 
