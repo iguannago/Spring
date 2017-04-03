@@ -13,7 +13,13 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.util.SystemPropertyUtils;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.WebUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.beans.PropertyDescriptor;
 import java.io.File;
 import java.io.FileReader;
@@ -47,7 +53,26 @@ public class UtilExampleApplication {
             classUtils();
             systemPropertyUtils();
             fileCopyUtils();
+            web();
         };
+    }
+
+    private void web() {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getForEntity("http://localhost:8080/hi?age=38", Void.class);
+    }
+
+    @RestController
+    public static class SimpleRestController {
+
+        @GetMapping("/hi")
+        void hi(HttpServletRequest request) {
+            int age = ServletRequestUtils.getIntParameter(request, "age", -1);
+            log.info("age is: " + age);
+            File tempDir = WebUtils.getTempDir(request.getServletContext());
+            log.info("tempDir: " + tempDir.getAbsolutePath());
+        }
+
     }
 
     private void fileCopyUtils() {
