@@ -4,11 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.FileCopyUtils;
@@ -19,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.WebUtils;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.beans.PropertyDescriptor;
 import java.io.File;
@@ -29,15 +35,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@EnableAspectJAutoProxy
 @SpringBootApplication
 @Log
 public class UtilExampleApplication {
+
+    @Aspect
+    @Component
+    public static class SimpleBeforeAspect {
+
+        @Before("execution(* begin(..))")
+        public void before(JoinPoint joinPoint) {
+            log.info("--------------");
+            log.info("before()");
+            log.info(joinPoint.toString());
+        }
+    }
 
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
     public static class DemoClass {
         private List<Map<String, Object>> list = new ArrayList<>();
+
+        @PostConstruct
+        public void begin() {
+            log.info("begin()");
+        }
     }
 
     @Bean
@@ -105,7 +129,6 @@ public class UtilExampleApplication {
         PropertyDescriptor[] propertyDescriptors = BeanUtils.getPropertyDescriptors(demo.getClass());
         for (PropertyDescriptor pd : propertyDescriptors) {
             log.info("pd: " + pd.getName());
-            log.info("pd.readMethod: " + pd.getReadMethod());
         }
     }
 
