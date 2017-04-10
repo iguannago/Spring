@@ -28,8 +28,9 @@ final class Game {
     private String workoutOutcome(Player player, int row, int column, GameBoard gameBoard) {
         String outcome = "no outcome yet";
         boolean left = workoutOutcomeRecursive(0, "left", player, row, column, gameBoard);
+        boolean right = workoutOutcomeRecursive(0, "right", player, row, column, gameBoard);
         boolean down = workoutOutcomeRecursive(0, "down", player, row, column, gameBoard);
-        if (left || down) {
+        if (left || down || right) {
             outcome = player.getName() + " wins";
         }
         return outcome;
@@ -45,7 +46,7 @@ final class Game {
             }
             if (move.equals("left")) {
                 if (iCanMoveLeft(column)) {
-                    --column;
+                    column--;
                 } else {
                     return false;
                 }
@@ -53,6 +54,13 @@ final class Game {
             if (move.equals("down")) {
                 if (iCanMoveDown(row)) {
                     row++;
+                } else {
+                    return false;
+                }
+            }
+            if (move.equals("right")) {
+                if (column < 7) {
+                    column++;
                 } else {
                     return false;
                 }

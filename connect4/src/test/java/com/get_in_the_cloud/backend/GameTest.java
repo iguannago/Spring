@@ -41,17 +41,34 @@ public class GameTest {
 
     @Test
     public void playerDropsDiscForwardTheRight4TimesHorizontallyToWinGame() throws Exception {
-        Game givenGame = givenStartedGameWith3RedDiscsHorizontallyInLine();
+        Game givenGame = givenStartedGameWith3RedDiscsHorizontallyInLineForwardRight();
         Game nextGame = givenGame.playerDropsDiscOnColumn(player1, 4);
         assertEquals("Player1 wins", nextGame.getOutcome());
     }
 
-    private Game givenStartedGameWith3RedDiscsHorizontallyInLine() {
+    private Game givenStartedGameWith3RedDiscsHorizontallyInLineForwardRight() {
         PlayerColours[][] board = new PlayerColours[6][7];
         board[5][0] = PlayerColours.RED;
         board[5][1] = PlayerColours.RED;
         board[5][2] = PlayerColours.RED;
         GameBoard gameBoard = GameBoard.of(board);
         return Game.of(player1, player2, gameBoard, "no outcome yet");
+    }
+
+    @Test
+    public void playerDropsDiscForwardTheLeft4TimesHorizontallyToWinGame() throws Exception {
+        Game givenGame = givenStartedGameWith3RedDiscsHorizontallyInLineForwardLeft();
+        Game nextGame = givenGame.playerDropsDiscOnColumn(player1, 4);
+        assertEquals("Player1 wins", nextGame.getOutcome());
+    }
+
+    private Game givenStartedGameWith3RedDiscsHorizontallyInLineForwardLeft() {
+        PlayerColours[][] board = new PlayerColours[6][7];
+        board[5][6] = PlayerColours.RED;
+        board[5][5] = PlayerColours.RED;
+        board[5][4] = PlayerColours.RED;
+        GameBoard gameBoard = GameBoard.of(board);
+        return Game.of(player1, player2, gameBoard, "no outcome yet");
+
     }
 }
