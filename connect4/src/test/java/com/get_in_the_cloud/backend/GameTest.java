@@ -25,7 +25,7 @@ public class GameTest {
     }
 
     @Test
-    public void playerDropsDiscOnANonFullColumn() {
+    public void playerDropsDiscOnANonFullColumn6Times() {
         int discDropTimes = 1;
         int column = 1;
         int row = 6;
