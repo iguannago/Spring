@@ -40,7 +40,7 @@ public class GameTest {
     }
 
     @Test
-    public void playerDropsDiscToWinGameWith4DiscsHorizontally() throws Exception {
+    public void playerDropsDiscForwardTheRight4TimesHorizontallyToWinGame() throws Exception {
         Game givenGame = givenStartedGameWith3RedDiscsHorizontallyInLine();
         Game nextGame = givenGame.playerDropsDiscOnColumn(player1, 4);
         assertEquals("Player1 wins", nextGame.getOutcome());
