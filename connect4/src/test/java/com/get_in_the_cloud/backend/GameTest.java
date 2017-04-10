@@ -1,6 +1,5 @@
 package com.get_in_the_cloud.backend;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -25,39 +24,19 @@ public class GameTest {
     }
 
     @Test
-    public void playerDropsDiscOnANonFullColumn6Times() {
-        int discDropTimes = 1;
+    public void playerDropsDiscOnANonFullColumnToWin() {
         int column = 1;
         int row = 6;
-        dropDiscRecursive(discDropTimes, row, column, game);
+        dropDiscRecursive(row, column, game);
     }
 
-    private Game dropDiscRecursive(int discDropTimes, int row, int column, Game game) {
-        if (discDropTimes == 7) {
+    private Game dropDiscRecursive(int row, int column, Game game) {
+        if (game.getOutcome().equals(player1.getName() + " wins")) {
             return game;
         }
         Game nextGame = game.playerDropsDiscOnColumn(player1, column);
         assertEquals(player1.getColour(), nextGame.getGameBoard().getCellColourForGivenRowAndColumn(row, column));
-        return dropDiscRecursive(++discDropTimes, --row, column, nextGame);
-    }
-
-    @Test
-    @Ignore
-    public void playerDropsDisc4TimesOnColumnToWinGame() throws Exception {
-        int column = 1;
-        int row = 6;
-        int count = 1;
-        Game finalGame = playerDropsDisc4TimesRecursive(count, column, row, game);
-        assertEquals("Player1 wins", finalGame.getOutcome());
-    }
-
-    private Game playerDropsDisc4TimesRecursive(int count, int column, int row, Game game) {
-        if (count > 4) {
-            return game;
-        }
-        Game nextGame = game.playerDropsDiscOnColumn(player1, column);
-        assertEquals(player1.getColour(), nextGame.getGameBoard().getCellColourForGivenRowAndColumn(row, column));
-        return playerDropsDisc4TimesRecursive(++count, column, --row, nextGame);
+        return dropDiscRecursive(--row, column, nextGame);
     }
 
     @Test
