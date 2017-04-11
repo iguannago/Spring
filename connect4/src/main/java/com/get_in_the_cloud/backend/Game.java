@@ -59,7 +59,7 @@ final class Game {
                 }
             }
             if (move.equals("right")) {
-                if (column < 7) {
+                if (canImoveRight(column)) {
                     column++;
                 } else {
                     return false;
@@ -68,6 +68,10 @@ final class Game {
             return workoutOutcomeRecursive(counter, move, player, row, column, gameBoard);
         }
         return false;
+    }
+
+    private boolean canImoveRight(int column) {
+        return column < 7;
     }
 
     private boolean iCanMoveDown(int row) {
